@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Set_Game.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Set_GameDlg.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Set_Repository.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Set_Algorithmus.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Set_BuildUp.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Set_GameDlg2.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Set_Game.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Set_GameDlg.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Set_Repository.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Set_Algorithmus.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Set_BuildUp.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Set_GameDlg2.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Set_Game.rc">
+      <Filter>Ressourcendateien</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Set_Game.rc2">
+      <Filter>Ressourcendateien</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Set_Game.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\icon1.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap1.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap2.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap3.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap4.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap5.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap6.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap7.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap8.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap9.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap10.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap11.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap12.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap13.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap14.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap15.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap16.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap17.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap18.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap19.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap20.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap21.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap22.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap23.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap24.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap25.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap26.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap27.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap28.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap29.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap30.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap31.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap32.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap33.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap34.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap35.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap36.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap37.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap38.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap39.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap40.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap41.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap42.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap43.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap44.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap45.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap46.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap47.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap48.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap49.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap50.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap51.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap52.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap53.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap54.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap55.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap56.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap57.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap58.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap59.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap60.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap61.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap62.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap63.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap64.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap65.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap66.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap67.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap68.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap69.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap70.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap71.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap72.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap73.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap74.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap75.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap76.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap77.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap78.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap79.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap80.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap81.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
