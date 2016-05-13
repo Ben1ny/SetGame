@@ -64,6 +64,11 @@ bool Set_Algorithmus::CheckBuildUp(array <Set_Card, 12> CardsUp)
 	return false;
 }
 
+void ThreeButtonsSet()
+{
+
+}
+
 int Set_Algorithmus::getPoints()
 {
 	return points;

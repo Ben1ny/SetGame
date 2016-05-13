@@ -12,6 +12,7 @@ public:
 
 	bool CheckBuildUp(array <Set_Card, 12>);
 	bool CheckForSet(Set_Card, Set_Card, Set_Card);
+	void ThreeButtonsSet();
 
 	int getPoints();
 
