@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Set_Algorithmus::Set_Algorithmus() // ich bin ein com
+Set_Algorithmus::Set_Algorithmus() // ich bin ein com // vom Thomas
 {
 	points = 0;
 }
