@@ -1,7 +1,7 @@
 
 // Set_GameDlg.h: Headerdatei
 //
-
+#include "Resource.h"
 #pragma once
 
 
@@ -13,7 +13,7 @@ public:
 	CSet_GameDlg(CWnd* pParent = NULL);	// Standardkonstruktor
 
 // Dialogfelddaten
-	enum { IDD = IDD_SET_GAME_DIALOG };
+	enum { IDD = IDD_SET_GAME_DIALOG};
 
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV-Unterstützung
@@ -31,10 +31,11 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedOk();
-	afx_msg void OnNeuesspiel1spieler();
 	afx_msg void OnCbnDropdownCombo1();
 	afx_msg void OnSpielerSpieler1();
 	afx_msg void OnOnspielneuesspiel();
 	afx_msg void OnHilfeInfo();
 	afx_msg void OnHilfeAnleitung();
+	afx_msg void OnBnClickedKarte0();
+	afx_msg void OnBnClickedKarte1();
 };

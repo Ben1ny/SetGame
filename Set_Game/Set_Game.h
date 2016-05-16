@@ -27,7 +27,7 @@ public:
 // Implementierung
 
 	DECLARE_MESSAGE_MAP()
-	afx_msg void OnOnspielneuesspiel();
+//	afx_msg void OnOnspielneuesspiel();
 };
 
 extern CSet_GameApp theApp;

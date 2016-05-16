@@ -86,9 +86,6 @@
     <Image Include="res\icon1.ico">
       <Filter>Ressourcendateien</Filter>
     </Image>
-    <Image Include="bitmap1.bmp">
-      <Filter>Ressourcendateien</Filter>
-    </Image>
     <Image Include="bitmap2.bmp">
       <Filter>Ressourcendateien</Filter>
     </Image>
@@ -327,6 +324,9 @@
       <Filter>Ressourcendateien</Filter>
     </Image>
     <Image Include="bitmap81.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="bitmap1.bmp">
       <Filter>Ressourcendateien</Filter>
     </Image>
   </ItemGroup>

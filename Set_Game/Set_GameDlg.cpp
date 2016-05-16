@@ -73,13 +73,14 @@ BEGIN_MESSAGE_MAP(CSet_GameDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDOK, &CSet_GameDlg::OnBnClickedOk)
-	ON_COMMAND(ID_NEUESSPIEL_1SPIELER, &CSet_GameDlg::OnNeuesspiel1spieler)
 	ON_CBN_DROPDOWN(IDC_COMBO1, &CSet_GameDlg::OnCbnDropdownCombo1)
 	ON_COMMAND(ID_SPIELER_SPIELER1, &CSet_GameDlg::OnSpielerSpieler1)
 	ON_COMMAND(OnSpielNeuesspiel, &CSet_GameDlg::OnOnspielneuesspiel)
 
 	ON_COMMAND(ID_HILFE_Anleitung, &CSet_GameDlg::OnHilfeAnleitung)
 	ON_COMMAND(ID_HILFE_INFO, &CSet_GameDlg::OnHilfeInfo)
+	ON_BN_CLICKED(IDC_Karte0, &CSet_GameDlg::OnBnClickedKarte0)
+	ON_BN_CLICKED(IDC_Karte1, &CSet_GameDlg::OnBnClickedKarte1)
 END_MESSAGE_MAP()
 
 
@@ -178,11 +179,6 @@ void CSet_GameDlg::OnBnClickedOk()
 }
 
 
-void CSet_GameDlg::OnNeuesspiel1spieler()
-{
-}
-
-
 void CSet_GameDlg::OnCbnDropdownCombo1()
 {
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
@@ -200,17 +196,24 @@ void CSet_GameDlg::OnSpielerSpieler1()
 
 }
 
-
-
-
 void CSet_GameDlg::OnOnspielneuesspiel()
 {
-	Set_BuildUp a(1);
-	CBitmap bmp;
-	bmp.LoadBitmap(IDB_BITMAP1);
-	CButton* pButton = (CButton*)GetDlgItem(IDC_Karte0);
-	pButton->ModifyStyle(0, BS_BITMAP);
-	pButton->SetBitmap(bmp);
+	Set_Deck CardStack;
+	array <Set_Card, 12> CardsOnTable;
+	for (int i = 0; i < 12; i++)
+	{
+		CardsOnTable[i] = CardStack.getCardFromDeck();
+	}
+	Set_Algorithmus SpielBeginnt;
+	if (SpielBeginnt.CheckBuildUp(CardsOnTable) == true)
+	{
+		SpielBeginnt.BuildtheDeck(CardsOnTable, this);
+	}
+	else
+	{
+		SpielBeginnt.BuildtheDeckThreeMore(CardStack.getCardFromDeck(), CardStack.getCardFromDeck(), CardStack.getCardFromDeck(), CardsOnTable, this);
+	}
+	
 }
 
 
@@ -231,4 +234,16 @@ void CAboutDlg::OnBnClickedOk()
 {
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 	CDialogEx::OnOK();
+}
+
+
+void CSet_GameDlg::OnBnClickedKarte0()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+
+
+void CSet_GameDlg::OnBnClickedKarte1()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
