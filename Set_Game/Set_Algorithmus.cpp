@@ -15,6 +15,9 @@ using namespace std;
 Set_Algorithmus::Set_Algorithmus() 
 {
 	points = new int[4];
+	auswahl_check = new Set_Card[3];
+	threeforcheck = 0;
+	zwischenspeicher = new int[3];
 }
 
 Set_Algorithmus::Set_Algorithmus(int anzahl, string *spieler)
@@ -118,9 +121,38 @@ void Set_Algorithmus::BuildtheDeckThreeMore(Set_Card one, Set_Card two, Set_Card
 	pButton3->SetBitmap(bmp3);
 }
 
-void ThreeButtonsSet()
+void Set_Algorithmus::ThreeButtonsSet(Set_Deck deck, array<Set_Card, 12> CardsUp, Set_Card checkCard, int player, int buttonnumber, CSet_GameDlg *Dlg)
 {
-
+	if (threeforcheck < 3)
+	{
+		auswahl_check[threeforcheck] = checkCard;
+		zwischenspeicher[threeforcheck] = buttonnumber;
+		threeforcheck++;
+	}
+	else
+	{
+		threeforcheck = 0;
+		if (Set_Algorithmus::CheckForSet(auswahl_check[0], auswahl_check[1], auswahl_check[2]) == true)
+		{
+			Set_Algorithmus::setPoints(player, 1);
+			for (int i = 0; i < 3; i++)
+			{
+				if (zwischenspeicher[i] < 12)
+				{
+					CardsUp[i] = deck.getCardFromDeck();
+				}
+				else if (zwischenspeicher[i] >= 12)
+				{
+					CBitmap bmp;
+					bmp.LoadBitmap(CardsUp[i].getCardId());
+					CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[i]);
+					pButton->ModifyStyle(0, BS_BITMAP);
+					pButton->SetBitmap(bmp);
+				}
+			}
+		}
+	}
+	
 }
 
 int Set_Algorithmus::getPoints(int player)

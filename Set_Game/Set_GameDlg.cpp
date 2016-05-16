@@ -239,6 +239,7 @@ void CAboutDlg::OnBnClickedOk()
 
 void CSet_GameDlg::OnBnClickedKarte0()
 {
+
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 

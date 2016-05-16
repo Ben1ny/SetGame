@@ -16,7 +16,7 @@ public:
 	void BuildtheDeck(array <Set_Card, 12>, CSet_GameDlg *);
 	void BuildtheDeckThreeMore(Set_Card, Set_Card, Set_Card, array <Set_Card, 12>, CSet_GameDlg *);
 	bool CheckForSet(Set_Card, Set_Card, Set_Card);
-	void ThreeButtonsSet();
+	void ThreeButtonsSet(Set_Deck, array <Set_Card, 12>, Set_Card, int, int, CSet_GameDlg *);
 
 
 	std::string getPlayer(int);
@@ -25,6 +25,8 @@ public:
 
 private:
 	int *points;
+	int threeforcheck;
+	int *zwischenspeicher;
 	Set_Card *auswahl_check;
 	std::string *spieler_name;
 	int buttons_array[15] = {IDC_Karte0, IDC_Karte1, IDC_Karte2, IDC_Karte3, IDC_Karte4, IDC_Karte5, IDC_Karte6, IDC_Karte7, IDC_Karte8,
