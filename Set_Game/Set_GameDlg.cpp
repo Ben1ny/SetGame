@@ -41,6 +41,7 @@ public:
 
 CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
 {
+
 }
 
 void CAboutDlg::DoDataExchange(CDataExchange* pDX)
@@ -76,11 +77,11 @@ BEGIN_MESSAGE_MAP(CSet_GameDlg, CDialogEx)
 	ON_CBN_DROPDOWN(IDC_COMBO1, &CSet_GameDlg::OnCbnDropdownCombo1)
 	ON_COMMAND(ID_SPIELER_SPIELER1, &CSet_GameDlg::OnSpielerSpieler1)
 	ON_COMMAND(OnSpielNeuesspiel, &CSet_GameDlg::OnOnspielneuesspiel)
-
 	ON_COMMAND(ID_HILFE_Anleitung, &CSet_GameDlg::OnHilfeAnleitung)
 	ON_COMMAND(ID_HILFE_INFO, &CSet_GameDlg::OnHilfeInfo)
 	ON_BN_CLICKED(IDC_Karte0, &CSet_GameDlg::OnBnClickedKarte0)
 	ON_BN_CLICKED(IDC_Karte1, &CSet_GameDlg::OnBnClickedKarte1)
+	ON_BN_CLICKED(IDC_Karte2, &CSet_GameDlg::OnBnClickedKarte2)
 END_MESSAGE_MAP()
 
 
@@ -213,7 +214,6 @@ void CSet_GameDlg::OnOnspielneuesspiel()
 	{
 		SpielBeginnt.BuildtheDeckThreeMore(CardStack.getCardFromDeck(), CardStack.getCardFromDeck(), CardStack.getCardFromDeck(), CardsOnTable, this);
 	}
-	
 }
 
 
@@ -239,12 +239,62 @@ void CAboutDlg::OnBnClickedOk()
 
 void CSet_GameDlg::OnBnClickedKarte0()
 {
-
+	
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
-
-
 void CSet_GameDlg::OnBnClickedKarte1()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+void CSet_GameDlg::OnBnClickedKarte2()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+void CSet_GameDlg::OnBnClickedKarte3()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+void CSet_GameDlg::OnBnClickedKarte4()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+void CSet_GameDlg::OnBnClickedKarte5()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+void CSet_GameDlg::OnBnClickedKarte6()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+void CSet_GameDlg::OnBnClickedKarte7()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+void CSet_GameDlg::OnBnClickedKarte8()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+void CSet_GameDlg::OnBnClickedKarte9()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+void CSet_GameDlg::OnBnClickedKarte10()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+void CSet_GameDlg::OnBnClickedKarte11()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+void CSet_GameDlg::OnBnClickedKarte12()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+void CSet_GameDlg::OnBnClickedKarte13()
+{
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+void CSet_GameDlg::OnBnClickedKarte14()
 {
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }

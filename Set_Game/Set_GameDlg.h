@@ -2,6 +2,7 @@
 // Set_GameDlg.h: Headerdatei
 //
 #include "Resource.h"
+
 #pragma once
 
 
@@ -38,4 +39,17 @@ public:
 	afx_msg void OnHilfeAnleitung();
 	afx_msg void OnBnClickedKarte0();
 	afx_msg void OnBnClickedKarte1();
+	afx_msg void OnBnClickedKarte2();
+	afx_msg void OnBnClickedKarte3();
+	afx_msg void OnBnClickedKarte4();
+	afx_msg void OnBnClickedKarte5();
+	afx_msg void OnBnClickedKarte6();
+	afx_msg void OnBnClickedKarte7();
+	afx_msg void OnBnClickedKarte8();
+	afx_msg void OnBnClickedKarte9();
+	afx_msg void OnBnClickedKarte10();
+	afx_msg void OnBnClickedKarte11();
+	afx_msg void OnBnClickedKarte12();
+	afx_msg void OnBnClickedKarte13();
+	afx_msg void OnBnClickedKarte14();
 };

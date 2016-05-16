@@ -143,13 +143,12 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck deck, array<Set_Card, 12> CardsUp
 				}
 				else if (zwischenspeicher[i] >= 12)
 				{
-					CBitmap bmp;
-					bmp.LoadBitmap(CardsUp[i].getCardId());
 					CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[i]);
 					pButton->ModifyStyle(0, BS_BITMAP);
-					pButton->SetBitmap(bmp);
+					pButton->SetBitmap(false);
 				}
 			}
+			Set_Algorithmus::BuildtheDeck(CardsUp, Dlg);
 		}
 	}
 	
