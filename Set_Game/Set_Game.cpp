@@ -6,6 +6,7 @@
 #include "Set_Game.h"
 #include "Set_GameDlg.h"
 
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -25,6 +26,7 @@ CSet_GameApp::CSet_GameApp()
 	// Neustart-Manager unterstützen
 	m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_RESTART;
 
+	
 	// TODO: Hier Code zur Konstruktion einfügen
 	// Alle wichtigen Initialisierungen in InitInstance positionieren
 }
