@@ -135,12 +135,18 @@ void Set_Deck::Set_PrintDeck()
 
 array <Set_Card, 12> Set_Deck::Set_GetTheTwelve()
 {
-	array <Set_Card, 12> TheTwelve;
+	//array <Set_Card, 12> TheTwelve;
 	for (int i = 0; i < 12; i++)
 	{
 		TheTwelve[i] = getCardFromDeck();
 	}
 	return TheTwelve;
+}
+
+void Set_Deck::Set_SetTheTwelve(Set_Card card, int position)
+{
+	//array <Set_Card, 12> TheTwelve;
+		TheTwelve[position] = card;
 }
 
 /*void Set_TheTwelve::Set_PrintTheTwelve()

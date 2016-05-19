@@ -37,8 +37,12 @@ public:
 	void Set_PrintDeck();
 	int Set_getDeckRemainingCards();
 	array <Set_Card, 12> Set_GetTheTwelve();
+	void Set_SetTheTwelve(Set_Card, int);
 protected:
 	array <Set_Card, 81> Deck;
+private:
+	array <Set_Card, 12> TheTwelve;
+
 };
 
 /*class Set_TheTwelve
