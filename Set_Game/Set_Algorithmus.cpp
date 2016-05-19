@@ -15,7 +15,7 @@ using namespace std;
 Set_Algorithmus::Set_Algorithmus() 
 {
 	buttons_array = new int[]{ IDC_Karte0, IDC_Karte1, IDC_Karte2, IDC_Karte3, IDC_Karte4, IDC_Karte5, IDC_Karte6, IDC_Karte7, IDC_Karte8,
-		IDC_Karte9, IDC_Karte10, IDC_Karte11, IDC_Karte12, IDC_Karte13, IDC_Karte14 };;
+		IDC_Karte9, IDC_Karte10, IDC_Karte11, IDC_Karte12, IDC_Karte13, IDC_Karte14 };
 	points = new int[4];
 	auswahl_check = new Set_Card[3];
 	threeforcheck = 0;
