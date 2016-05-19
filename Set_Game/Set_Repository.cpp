@@ -127,10 +127,10 @@ void Set_Deck::Set_PrintDeck()
 	}
 }
 
-Set_TheTwelve::Set_TheTwelve()
+/*Set_TheTwelve::Set_TheTwelve()
 {
 
-}
+}*/
 
 
 array <Set_Card, 12> Set_Deck::Set_GetTheTwelve()
@@ -139,11 +139,11 @@ array <Set_Card, 12> Set_Deck::Set_GetTheTwelve()
 	for (int i = 0; i < 12; i++)
 	{
 		TheTwelve[i] = getCardFromDeck();
-		return TheTwelve;
 	}
+	return TheTwelve;
 }
 
-void Set_TheTwelve::Set_PrintTheTwelve()
+/*void Set_TheTwelve::Set_PrintTheTwelve()
 {
 	array <Set_Card, 12> TheTwelve; //obsolete code...
 	cout << "12 Karten:" << endl;
@@ -152,7 +152,7 @@ void Set_TheTwelve::Set_PrintTheTwelve()
 		cout << "Kartennr.: " << TheTwelve[i].getCardId() << "\t" << " Form: " << TheTwelve[i].getCardForm() << "\t" << " Farbe: " << TheTwelve[i].getCardFarbe() << "\t" << " Fuellung: " << TheTwelve[i].getCardFuellung() << "\t" << "Anzahl: " << TheTwelve[i].getCardAnzahl() << endl;
 
 	}
-}
+}*/
 
 
 

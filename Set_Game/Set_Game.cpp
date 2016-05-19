@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "Set_Game.h"
 #include "Set_GameDlg.h"
+#include <array>
 
 
 #ifdef _DEBUG

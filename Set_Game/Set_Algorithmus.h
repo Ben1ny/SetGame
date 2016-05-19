@@ -4,7 +4,7 @@
 #include "Set_Repository.h"
 #include "Set_GameDlg.h"
 #include "Resource.h"
-#include <array>
+
 
 class Set_Algorithmus
 {

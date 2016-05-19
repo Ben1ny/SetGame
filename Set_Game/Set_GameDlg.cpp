@@ -12,6 +12,9 @@
 #include "Set_Repository.h"
 #include "Set_BuildUp.h"
 #include "Set_GameDlg2.h"
+#include <array>
+
+
 
 
 #ifdef _DEBUG
@@ -35,13 +38,13 @@ public:
 // Implementierung
 protected:
 	DECLARE_MESSAGE_MAP()
+	
 public:
 	afx_msg void OnBnClickedOk();
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
 {
-	
 }
 
 void CAboutDlg::DoDataExchange(CDataExchange* pDX)
@@ -61,7 +64,10 @@ END_MESSAGE_MAP()
 CSet_GameDlg::CSet_GameDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CSet_GameDlg::IDD, pParent)
 {
-//	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+
+	//	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	SpielBeginnt = new Set_Algorithmus;
+	CardStack = new Set_Deck;
 }
 
 void CSet_GameDlg::DoDataExchange(CDataExchange* pDX)
@@ -90,7 +96,7 @@ END_MESSAGE_MAP()
 BOOL CSet_GameDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
-
+	
 	// Hinzufügen des Menübefehls "Info..." zum Systemmenü.
 
 	// IDM_ABOUTBOX muss sich im Bereich der Systembefehle befinden.
@@ -199,20 +205,16 @@ void CSet_GameDlg::OnSpielerSpieler1()
 
 void CSet_GameDlg::OnOnspielneuesspiel()
 {
-	Set_Deck CardStack;
-	array <Set_Card, 12> CardsOnTable;
-	for (int i = 0; i < 12; i++)
+	//Set_Deck CardStack;
+	//CardsOnTable = CardStack->Set_GetTheTwelve();
+	//Set_Algorithmus SpielBeginnt;
+	if (SpielBeginnt->CheckBuildUp(CardStack->Set_GetTheTwelve()) == true)
 	{
-		CardsOnTable[i] = CardStack.getCardFromDeck();
-	}
-	Set_Algorithmus SpielBeginnt;
-	if (SpielBeginnt.CheckBuildUp(CardsOnTable) == true)
-	{
-		SpielBeginnt.BuildtheDeck(CardsOnTable, this);
+		SpielBeginnt->BuildtheDeck(CardStack->Set_GetTheTwelve(), this);
 	}
 	else
 	{
-		SpielBeginnt.BuildtheDeckThreeMore(CardStack.getCardFromDeck(), CardStack.getCardFromDeck(), CardStack.getCardFromDeck(), CardsOnTable, this);
+		SpielBeginnt->BuildtheDeckThreeMore(CardStack->getCardFromDeck(), CardStack->getCardFromDeck(), CardStack->getCardFromDeck(), CardStack->Set_GetTheTwelve(), this);
 	}
 }
 
@@ -239,7 +241,6 @@ void CAboutDlg::OnBnClickedOk()
 
 void CSet_GameDlg::OnBnClickedKarte0()
 {
-	
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte1()

@@ -127,6 +127,8 @@
     <ResourceCompile Include="Set_Game.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram21.cd" />
     <None Include="res\Set_Game.rc2" />
   </ItemGroup>
   <ItemGroup>

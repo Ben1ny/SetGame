@@ -41,7 +41,7 @@ protected:
 	array <Set_Card, 81> Deck;
 };
 
-class Set_TheTwelve
+/*class Set_TheTwelve
 {
 public:
 	Set_TheTwelve();
@@ -49,5 +49,5 @@ public:
 
 private:
 
-};
+};*/
 
