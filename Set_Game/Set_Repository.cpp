@@ -133,7 +133,7 @@ void Set_Deck::Set_PrintDeck()
 }*/
 
 
-array <Set_Card, 12> Set_Deck::Set_GetTheTwelve()
+array <Set_Card, 12> Set_Deck::Set_GetStartUpTheTwelve()
 {
 	//array <Set_Card, 12> TheTwelve;
 	for (int i = 0; i < 12; i++)
@@ -143,10 +143,19 @@ array <Set_Card, 12> Set_Deck::Set_GetTheTwelve()
 	return TheTwelve;
 }
 
+array <Set_Card, 12> Set_Deck::Set_GetTheTwelve()
+{
+	return TheTwelve;
+}
+
 void Set_Deck::Set_SetTheTwelve(Set_Card card, int position)
 {
-	//array <Set_Card, 12> TheTwelve;
-		TheTwelve[position] = card;
+	TheTwelve[position] = card;
+}
+
+Set_Card Set_Deck::Set_GetCardFromTwelve(int position)
+{
+	return TheTwelve[position];
 }
 
 /*void Set_TheTwelve::Set_PrintTheTwelve()

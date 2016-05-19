@@ -88,6 +88,18 @@ BEGIN_MESSAGE_MAP(CSet_GameDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_Karte0, &CSet_GameDlg::OnBnClickedKarte0)
 	ON_BN_CLICKED(IDC_Karte1, &CSet_GameDlg::OnBnClickedKarte1)
 	ON_BN_CLICKED(IDC_Karte2, &CSet_GameDlg::OnBnClickedKarte2)
+	ON_BN_CLICKED(IDC_Karte3, &CSet_GameDlg::OnBnClickedKarte3)
+	ON_BN_CLICKED(IDC_Karte4, &CSet_GameDlg::OnBnClickedKarte4)
+	ON_BN_CLICKED(IDC_Karte5, &CSet_GameDlg::OnBnClickedKarte5)
+	ON_BN_CLICKED(IDC_Karte6, &CSet_GameDlg::OnBnClickedKarte6)
+	ON_BN_CLICKED(IDC_Karte7, &CSet_GameDlg::OnBnClickedKarte7)
+	ON_BN_CLICKED(IDC_Karte8, &CSet_GameDlg::OnBnClickedKarte8)
+	ON_BN_CLICKED(IDC_Karte9, &CSet_GameDlg::OnBnClickedKarte9)
+	ON_BN_CLICKED(IDC_Karte10, &CSet_GameDlg::OnBnClickedKarte10)
+	ON_BN_CLICKED(IDC_Karte11, &CSet_GameDlg::OnBnClickedKarte11)
+	ON_BN_CLICKED(IDC_Karte12, &CSet_GameDlg::OnBnClickedKarte12)
+	ON_BN_CLICKED(IDC_Karte13, &CSet_GameDlg::OnBnClickedKarte13)
+	ON_BN_CLICKED(IDC_Karte14, &CSet_GameDlg::OnBnClickedKarte14)
 END_MESSAGE_MAP()
 
 
@@ -208,13 +220,13 @@ void CSet_GameDlg::OnOnspielneuesspiel()
 	//Set_Deck CardStack;
 	//CardsOnTable = CardStack->Set_GetTheTwelve();
 	//Set_Algorithmus SpielBeginnt;
-	if (SpielBeginnt->CheckBuildUp(CardStack->Set_GetTheTwelve()) == true)
+	if (SpielBeginnt->CheckBuildUp(CardStack->Set_GetStartUpTheTwelve()) == true)
 	{
-		SpielBeginnt->BuildtheDeck(CardStack->Set_GetTheTwelve(), this);
+		SpielBeginnt->BuildtheDeck(CardStack->Set_GetStartUpTheTwelve(), this);
 	}
 	else
 	{
-		SpielBeginnt->BuildtheDeckThreeMore(CardStack->getCardFromDeck(), CardStack->getCardFromDeck(), CardStack->getCardFromDeck(), CardStack->Set_GetTheTwelve(), this);
+		SpielBeginnt->BuildtheDeckThreeMore(CardStack->getCardFromDeck(), CardStack->getCardFromDeck(), CardStack->getCardFromDeck(), CardStack->Set_GetStartUpTheTwelve(), this);
 	}
 }
 
@@ -241,61 +253,77 @@ void CAboutDlg::OnBnClickedOk()
 
 void CSet_GameDlg::OnBnClickedKarte0()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(0), 1, 0, this);
+		//ThreeButtonsSet(Set_Deck, array <Set_Card, 12>, Set_Card, int, int, CSet_GameDlg *)
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte1()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(1), 1, 1, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte2()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(2), 1, 2, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte3()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(3), 1, 3, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte4()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(4), 1, 4, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte5()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(5), 1, 5, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte6()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(6), 1, 6, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte7()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(7), 1, 7, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte8()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(8), 1, 8, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte9()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(9), 1, 9, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte10()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(10), 1, 10, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte11()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(11), 1, 11, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte12()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(12), 1, 12, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte13()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(13), 1, 13, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte14()
 {
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(14), 1, 14, this);
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }

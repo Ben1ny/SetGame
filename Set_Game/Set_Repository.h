@@ -36,7 +36,10 @@ public:
 	Set_Card getCardFromDeck();
 	void Set_PrintDeck();
 	int Set_getDeckRemainingCards();
+	array <Set_Card, 12> Set_GetStartUpTheTwelve();
 	array <Set_Card, 12> Set_GetTheTwelve();
+	Set_Card Set_GetCardFromTwelve(int);
+	//array <Set_Card, 12> Set_GetTheTwelve();
 	void Set_SetTheTwelve(Set_Card, int);
 protected:
 	array <Set_Card, 81> Deck;

@@ -17,9 +17,10 @@ Set_Algorithmus::Set_Algorithmus()
 	buttons_array = new int[15]{ IDC_Karte0, IDC_Karte1, IDC_Karte2, IDC_Karte3, IDC_Karte4, IDC_Karte5, IDC_Karte6, IDC_Karte7, IDC_Karte8,
 		IDC_Karte9, IDC_Karte10, IDC_Karte11, IDC_Karte12, IDC_Karte13, IDC_Karte14 };
 	points = new int[4];
-	auswahl_check = new Set_Card[3];
+	auswahl_check = new Set_Card[3]{};
 	threeforcheck = 0;
-	zwischenspeicher = new int[3];
+	zwischenspeicher = new int[3]{0};
+	lastbutton = 15;
 }
 
 Set_Algorithmus::Set_Algorithmus(int anzahl, string *spieler)
@@ -125,23 +126,25 @@ void Set_Algorithmus::BuildtheDeckThreeMore(Set_Card one, Set_Card two, Set_Card
 
 void Set_Algorithmus::ThreeButtonsSet(Set_Deck deck, array<Set_Card, 12> CardsUp, Set_Card checkCard, int player, int buttonnumber, CSet_GameDlg *Dlg)
 {
-	if (threeforcheck < 3)
+	if (threeforcheck <= 2 && lastbutton != buttonnumber)
 	{
+		lastbutton = buttonnumber;
 		auswahl_check[threeforcheck] = checkCard;
 		zwischenspeicher[threeforcheck] = buttonnumber;
 		threeforcheck++;
 	}
-	else
+	else if(threeforcheck == 3)
 	{
+		buttonnumber = 15;			// wird auf 15 gesetzt damit kein Konflikt mit den anderen Buttons am anfang besteht.
 		threeforcheck = 0;
 		if (Set_Algorithmus::CheckForSet(auswahl_check[0], auswahl_check[1], auswahl_check[2]) == true)
 		{
 			Set_Algorithmus::setPoints(player, 1);
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i <= 2; i++)
 			{
 				if (zwischenspeicher[i] < 12)
 				{
-					CardsUp[i] = deck.getCardFromDeck();
+					deck.Set_SetTheTwelve(deck.getCardFromDeck(), i);
 				}
 				else if (zwischenspeicher[i] >= 12)
 				{
@@ -150,7 +153,8 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck deck, array<Set_Card, 12> CardsUp
 					pButton->SetBitmap(false);
 				}
 			}
-			Set_Algorithmus::BuildtheDeck(CardsUp, Dlg);
+			Set_Algorithmus::BuildtheDeck(deck.Set_GetStartUpTheTwelve(), Dlg);
+			//Set_Algorithmus::BuildtheDeck(C, Dlg);
 		}
 	}
 	

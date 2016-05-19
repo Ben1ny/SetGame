@@ -26,6 +26,7 @@ public:
 
 private:
 	int *points;
+	int lastbutton;
 	int threeforcheck;
 	int *zwischenspeicher;
 	Set_Card *auswahl_check;
