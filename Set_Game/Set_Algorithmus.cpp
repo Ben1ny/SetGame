@@ -87,7 +87,7 @@ void Set_Algorithmus::BuildtheDeck(array<Set_Card, 12> CardsUp, CSet_GameDlg *Dl
 	for (int i = 0; i < 12; i++)
 	{
 		CBitmap bmp;
-		bmp.LoadBitmap(CardsUp[i].getCardId());
+		bmp.LoadBitmap((CardsUp[i].getCardId()));
 		CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[i]);
 		pButton->ModifyStyle(0, BS_BITMAP);
 		pButton->SetBitmap(bmp);
@@ -124,7 +124,7 @@ void Set_Algorithmus::BuildtheDeckThreeMore(Set_Card one, Set_Card two, Set_Card
 	pButton3->SetBitmap(bmp3);
 }
 
-void Set_Algorithmus::ThreeButtonsSet(Set_Deck deck, array<Set_Card, 12> CardsUp, Set_Card checkCard, int player, int buttonnumber, CSet_GameDlg *Dlg)
+void Set_Algorithmus::ThreeButtonsSet(Set_Deck deck, array<Set_Card, 12> &CardsUp, Set_Card checkCard, int player, int buttonnumber, CSet_GameDlg *Dlg)
 {
 	if (threeforcheck <= 2 && lastbutton != buttonnumber)
 	{
@@ -133,9 +133,9 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck deck, array<Set_Card, 12> CardsUp
 		zwischenspeicher[threeforcheck] = buttonnumber;
 		threeforcheck++;
 	}
-	else if(threeforcheck == 3)
+	if(threeforcheck == 3)
 	{
-		buttonnumber = 15;			// wird auf 15 gesetzt damit kein Konflikt mit den anderen Buttons am anfang besteht.
+		lastbutton = 15;			// wird auf 15 gesetzt damit kein Konflikt mit den anderen Buttons am anfang besteht.
 		threeforcheck = 0;
 		if (Set_Algorithmus::CheckForSet(auswahl_check[0], auswahl_check[1], auswahl_check[2]) == true)
 		{
@@ -144,7 +144,8 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck deck, array<Set_Card, 12> CardsUp
 			{
 				if (zwischenspeicher[i] < 12)
 				{
-					deck.Set_SetTheTwelve(deck.getCardFromDeck(), i);
+					//deck.Set_SetTheTwelve(deck.getCardFromDeck(), zwischenspeicher[i]);
+					deck.Set_SetTheTwelve(zwischenspeicher[i]);
 				}
 				else if (zwischenspeicher[i] >= 12)
 				{
@@ -153,8 +154,9 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck deck, array<Set_Card, 12> CardsUp
 					pButton->SetBitmap(false);
 				}
 			}
-			Set_Algorithmus::BuildtheDeck(deck.Set_GetStartUpTheTwelve(), Dlg);
-			//Set_Algorithmus::BuildtheDeck(C, Dlg);
+			//Set_Algorithmus::BuildtheDeck(deck.Set_GetStartUpTheTwelve(), Dlg);
+			Set_Algorithmus::BuildtheDeck(deck.Set_GetTheTwelve(), Dlg);
+			//UpdateWindow();
 		}
 	}
 	

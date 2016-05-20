@@ -17,7 +17,7 @@ public:
 	void BuildtheDeck(array <Set_Card, 12>, CSet_GameDlg *);
 	void BuildtheDeckThreeMore(Set_Card, Set_Card, Set_Card, array <Set_Card, 12>, CSet_GameDlg *);
 	bool CheckForSet(Set_Card, Set_Card, Set_Card);
-	void ThreeButtonsSet(Set_Deck, array <Set_Card, 12>, Set_Card, int, int, CSet_GameDlg *);
+	void ThreeButtonsSet(Set_Deck, array <Set_Card, 12> &, Set_Card, int, int, CSet_GameDlg *);
 
 
 	std::string getPlayer(int);

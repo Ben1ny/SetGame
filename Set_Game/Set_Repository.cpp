@@ -147,15 +147,16 @@ array <Set_Card, 12> Set_Deck::Set_GetTheTwelve()
 {
 	return TheTwelve;
 }
-
-void Set_Deck::Set_SetTheTwelve(Set_Card card, int position)
+//void Set_Deck::Set_SetTheTwelve(Set_Card card, int position)
+void Set_Deck::Set_SetTheTwelve(int position)
 {
-	TheTwelve[position] = card;
+	//TheTwelve[position] = card;
+	TheTwelve[position] = getCardFromDeck();
 }
 
 Set_Card Set_Deck::Set_GetCardFromTwelve(int position)
 {
-	return TheTwelve[position];
+	return (TheTwelve[position]);
 }
 
 /*void Set_TheTwelve::Set_PrintTheTwelve()
