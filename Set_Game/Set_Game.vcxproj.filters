@@ -80,6 +80,7 @@
     </None>
     <None Include="ClassDiagram2.cd" />
     <None Include="ClassDiagram21.cd" />
+    <None Include="ClassDiagram22.cd" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Set_Game.ico">

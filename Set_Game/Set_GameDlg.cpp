@@ -67,7 +67,7 @@ CSet_GameDlg::CSet_GameDlg(CWnd* pParent /*=NULL*/)
 
 	//	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 	SpielBeginnt = new Set_Algorithmus;
-	CardStack = new Set_Deck;
+	// CardStack = new Set_Deck;
 }
 
 void CSet_GameDlg::DoDataExchange(CDataExchange* pDX)
@@ -220,13 +220,14 @@ void CSet_GameDlg::OnOnspielneuesspiel()
 	//Set_Deck CardStack;
 	//CardsOnTable = CardStack->Set_GetTheTwelve();
 	//Set_Algorithmus SpielBeginnt;
+	CardStack = new Set_Deck;
 	if (SpielBeginnt->CheckBuildUp(CardStack->Set_GetStartUpTheTwelve()) == true)
 	{
-		SpielBeginnt->BuildtheDeck(CardStack->Set_GetStartUpTheTwelve(), this);
+		SpielBeginnt->BuildtheDeck(CardStack->Set_GetTheTwelve(), this);
 	}
 	else
 	{
-		SpielBeginnt->BuildtheDeckThreeMore(CardStack->getCardFromDeck(), CardStack->getCardFromDeck(), CardStack->getCardFromDeck(), CardStack->Set_GetStartUpTheTwelve(), this);
+		SpielBeginnt->BuildtheDeckThreeMore(CardStack->getCardFromDeck(), CardStack->getCardFromDeck(), CardStack->getCardFromDeck(), CardStack->Set_GetTheTwelve(), this);
 	}
 }
 

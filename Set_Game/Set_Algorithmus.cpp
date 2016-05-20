@@ -153,7 +153,7 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck deck, array<Set_Card, 12> CardsUp
 					pButton->SetBitmap(false);
 				}
 			}
-			Set_Algorithmus::BuildtheDeck(deck.Set_GetStartUpTheTwelve(), Dlg);
+			Set_Algorithmus::BuildtheDeck(deck.Set_GetTheTwelve(), Dlg);
 			//Set_Algorithmus::BuildtheDeck(C, Dlg);
 		}
 	}
