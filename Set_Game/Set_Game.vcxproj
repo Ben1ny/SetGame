@@ -19,7 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
@@ -129,6 +129,7 @@
   <ItemGroup>
     <None Include="ClassDiagram2.cd" />
     <None Include="ClassDiagram21.cd" />
+    <None Include="ClassDiagram22.cd" />
     <None Include="res\Set_Game.rc2" />
   </ItemGroup>
   <ItemGroup>
