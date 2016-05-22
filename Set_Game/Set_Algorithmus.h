@@ -13,11 +13,12 @@ public:
 	Set_Algorithmus(int, std::string*);
 	~Set_Algorithmus();
 
-	bool CheckBuildUp(array <Set_Card, 12>);
-	void BuildtheDeck(array <Set_Card, 12>, CSet_GameDlg *);
-	void BuildtheDeckThreeMore(Set_Card, Set_Card, Set_Card, array <Set_Card, 12>, CSet_GameDlg *);
+	bool CheckBuildUp(array <Set_Card, 15>);
+	void BuildtheDeck(array <Set_Card, 15>, CSet_GameDlg *);
+	void BuildtheDeckThreeMore(array <Set_Card, 15>, CSet_GameDlg *);
 	bool CheckForSet(Set_Card, Set_Card, Set_Card);
-	void ThreeButtonsSet(Set_Deck, array <Set_Card, 12> &, Set_Card, int, int, CSet_GameDlg *);
+	void ThreeButtonsSet(Set_Deck &, array <Set_Card, 15> &, Set_Card &, int, int, CSet_GameDlg *);
+	void GetThreeMore(Set_Deck &, array <Set_Card, 15> &);
 
 
 	std::string getPlayer(int);
@@ -25,6 +26,8 @@ public:
 	void setPoints(int, int);
 
 private:
+	bool *threeontop;
+	bool threemoreflag;
 	int *points;
 	int lastbutton;
 	int threeforcheck;

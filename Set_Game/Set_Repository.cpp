@@ -15,7 +15,7 @@ using namespace std;
 
 Set_Card::Set_Card()
 {
-	;
+	
 }
 
 Set_Card::Set_Card(int an, string fo, string fa, string fue, int IdNr)
@@ -25,6 +25,11 @@ Set_Card::Set_Card(int an, string fo, string fa, string fue, int IdNr)
 	farbe = fa;
 	fuellung = fue;
 	CardId = IdNr;
+}
+
+Set_Card::~Set_Card()
+{
+
 }
 
 int Set_Card::getCardAnzahl() { return anzahl; }
@@ -99,6 +104,11 @@ Set_Deck::Set_Deck()
 
 }
 
+Set_Deck::~Set_Deck()
+{
+
+}
+
 Set_Card Set_Deck::getCardFromDeck()
 {
 
@@ -133,25 +143,25 @@ void Set_Deck::Set_PrintDeck()
 }*/
 
 
-array <Set_Card, 12> Set_Deck::Set_GetStartUpTheTwelve()
+array <Set_Card, 15> Set_Deck::Set_GetStartUpTheTwelve()
 {
 	//array <Set_Card, 12> TheTwelve;
-	for (int i = 0; i < 12; i++)
+	for (int i = 0; i <= 11; i++)
 	{
-		TheTwelve[i] = getCardFromDeck();
+			TheTwelve[i] = getCardFromDeck();
 	}
 	return TheTwelve;
 }
 
-array <Set_Card, 12> Set_Deck::Set_GetTheTwelve()
+array <Set_Card, 15> Set_Deck::Set_GetTheTwelve()
 {
 	return TheTwelve;
 }
-//void Set_Deck::Set_SetTheTwelve(Set_Card card, int position)
-void Set_Deck::Set_SetTheTwelve(int position)
+
+void Set_Deck::Set_SetTheTwelve(Set_Card card, int position)
 {
-	//TheTwelve[position] = card;
-	TheTwelve[position] = getCardFromDeck();
+	//TheTwelve[position] = getCardFromDeck();
+	TheTwelve[position] = card;
 }
 
 Set_Card Set_Deck::Set_GetCardFromTwelve(int position)

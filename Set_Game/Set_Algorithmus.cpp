@@ -16,11 +16,13 @@ Set_Algorithmus::Set_Algorithmus()
 {
 	buttons_array = new int[15]{ IDC_Karte0, IDC_Karte1, IDC_Karte2, IDC_Karte3, IDC_Karte4, IDC_Karte5, IDC_Karte6, IDC_Karte7, IDC_Karte8,
 		IDC_Karte9, IDC_Karte10, IDC_Karte11, IDC_Karte12, IDC_Karte13, IDC_Karte14 };
-	points = new int[4];
+	points = new int[4]{0};
 	auswahl_check = new Set_Card[3]{};
 	threeforcheck = 0;
 	zwischenspeicher = new int[3]{0};
 	lastbutton = 15;
+	threemoreflag = false;
+	threeontop = new bool[3]{ false, false, false };
 }
 
 Set_Algorithmus::Set_Algorithmus(int anzahl, string *spieler)
@@ -33,10 +35,9 @@ Set_Algorithmus::Set_Algorithmus(int anzahl, string *spieler)
 	}
 }
 
-
-
 Set_Algorithmus::~Set_Algorithmus()
 {
+	
 }
 
 bool Set_Algorithmus::CheckForSet(Set_Card a, Set_Card b, Set_Card c)
@@ -64,7 +65,7 @@ bool Set_Algorithmus::CheckForSet(Set_Card a, Set_Card b, Set_Card c)
 	return true;
 }
 
-bool Set_Algorithmus::CheckBuildUp(array <Set_Card, 12> CardsUp)
+bool Set_Algorithmus::CheckBuildUp(array <Set_Card, 15> CardsUp)
 {
 	for (int i = 0; i < 12; i++)
 	{
@@ -82,9 +83,9 @@ bool Set_Algorithmus::CheckBuildUp(array <Set_Card, 12> CardsUp)
 	return false;
 }
 
-void Set_Algorithmus::BuildtheDeck(array<Set_Card, 12> CardsUp, CSet_GameDlg *Dlg)
+void Set_Algorithmus::BuildtheDeck(array<Set_Card, 15> CardsUp, CSet_GameDlg *Dlg)
 {
-	for (int i = 0; i < 12; i++)
+	for (int i = 0; i <= 11; i++)
 	{
 		CBitmap bmp;
 		bmp.LoadBitmap((CardsUp[i].getCardId()));
@@ -92,39 +93,33 @@ void Set_Algorithmus::BuildtheDeck(array<Set_Card, 12> CardsUp, CSet_GameDlg *Dl
 		pButton->ModifyStyle(0, BS_BITMAP);
 		pButton->SetBitmap(bmp);
 	}
-}
 
-void Set_Algorithmus::BuildtheDeckThreeMore(Set_Card one, Set_Card two, Set_Card three, array <Set_Card, 12> CardsUp, CSet_GameDlg *Dlg)
-{
-	for (int i = 0; i < 12; i++)
+	for (int k = 0; k <= 11; k++)
 	{
-		CBitmap bmp;
-		bmp.LoadBitmap(CardsUp[i].getCardId());
-		CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[i]);
-		pButton->ModifyStyle(0, BS_BITMAP);
-		pButton->SetBitmap(bmp);
+		CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[k]);
+		pButton->EnableWindow(true);
 	}
-	
-	CBitmap bmp1;
-	bmp1.LoadBitmap(one.getCardId());
-	CButton* pButton1 = (CButton*)Dlg->GetDlgItem(buttons_array[12]);
-	pButton1->ModifyStyle(0, BS_BITMAP);
-	pButton1->SetBitmap(bmp1);
-	
-	CBitmap bmp2;
-	bmp2.LoadBitmap(two.getCardId());
-	CButton* pButton2 = (CButton*)Dlg->GetDlgItem(buttons_array[13]);
-	pButton2->ModifyStyle(0, BS_BITMAP);
-	pButton2->SetBitmap(bmp2);
-	
-	CBitmap bmp3;
-	bmp3.LoadBitmap(three.getCardId());
-	CButton* pButton3 = (CButton*)Dlg->GetDlgItem(buttons_array[14]);
-	pButton3->ModifyStyle(0, BS_BITMAP);
-	pButton3->SetBitmap(bmp3);
 }
 
-void Set_Algorithmus::ThreeButtonsSet(Set_Deck deck, array<Set_Card, 12> &CardsUp, Set_Card checkCard, int player, int buttonnumber, CSet_GameDlg *Dlg)
+void Set_Algorithmus::BuildtheDeckThreeMore(array <Set_Card, 15> CardsUp, CSet_GameDlg *Dlg)
+{
+	for (int i = 0; i <= 14; i++)
+	{
+			CBitmap bmp;
+			bmp.LoadBitmap(CardsUp[i].getCardId());
+			CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[i]);
+			pButton->ModifyStyle(0, BS_BITMAP);
+			pButton->SetBitmap(bmp);
+	}
+
+	for (int k = 0; k <= 14; k++)
+	{
+		CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[k]);
+		pButton->EnableWindow(true);
+	}
+}
+
+void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &CardsUp, Set_Card &checkCard, int player, int buttonnumber, CSet_GameDlg *Dlg)
 {
 	if (threeforcheck <= 2 && lastbutton != buttonnumber)
 	{
@@ -132,6 +127,8 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck deck, array<Set_Card, 12> &CardsU
 		auswahl_check[threeforcheck] = checkCard;
 		zwischenspeicher[threeforcheck] = buttonnumber;
 		threeforcheck++;
+		CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[buttonnumber]);
+		pButton->EnableWindow(false);
 	}
 	if(threeforcheck == 3)
 	{
@@ -142,24 +139,74 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck deck, array<Set_Card, 12> &CardsU
 			Set_Algorithmus::setPoints(player, 1);
 			for (int i = 0; i <= 2; i++)
 			{
-				if (zwischenspeicher[i] < 12)
+				if(zwischenspeicher[i] < 12)
 				{
-					//deck.Set_SetTheTwelve(deck.getCardFromDeck(), zwischenspeicher[i]);
-					deck.Set_SetTheTwelve(zwischenspeicher[i]);
+					if (threemoreflag == true)
+					{
+						for (int j = 0; j <= 2; j++)
+						{
+							if (threeontop[j] == true)
+							{
+								deck.Set_SetTheTwelve(deck.Set_GetCardFromTwelve(j + 12), zwischenspeicher[i]);
+								threeontop[j] = false;
+								CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[j+12]);
+								pButton->ModifyStyle(0, BS_BITMAP);
+								pButton->SetBitmap(false);
+								pButton->EnableWindow(false);
+								break;
+							}
+						}
+						
+					}
+					else
+					{
+						//deck.Set_SetTheTwelve(deck.getCardFromDeck(), zwischenspeicher[i]);
+						deck.Set_SetTheTwelve(deck.getCardFromDeck(), zwischenspeicher[i]);
+					}
+					if ((threeontop[0] == false) && (threeontop[1] == false) && (threeontop[2] == false))
+					{
+						threemoreflag = false;
+					}
 				}
-				else if (zwischenspeicher[i] >= 12)
+				else if(zwischenspeicher[i] >= 12)
 				{
-					CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[i]);
+					CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[zwischenspeicher[i]]);
 					pButton->ModifyStyle(0, BS_BITMAP);
 					pButton->SetBitmap(false);
+					pButton->EnableWindow(false);
+					threeontop[(zwischenspeicher[i] - 12)] = false;
 				}
 			}
 			//Set_Algorithmus::BuildtheDeck(deck.Set_GetStartUpTheTwelve(), Dlg);
 			Set_Algorithmus::BuildtheDeck(deck.Set_GetTheTwelve(), Dlg);
-			//UpdateWindow();
+		}
+		for (int k = 0; k <= 2; k++)
+		{
+			if (zwischenspeicher[k] <= 11)
+			{
+				CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[zwischenspeicher[k]]);
+				pButton->EnableWindow(true);
+			}
 		}
 	}
-	
+	if ((threeontop[0] == false) && (threeontop[1] == false) && (threeontop[2] == false))
+	{
+		threemoreflag = false;
+	}
+
+}
+
+void Set_Algorithmus::GetThreeMore(Set_Deck &deck, array <Set_Card, 15> &CardsUp)
+{
+	threemoreflag = true;
+	for (int i = 12; i <= 14; i++)
+	{
+		deck.Set_SetTheTwelve(deck.getCardFromDeck(), i);
+	}
+	for (int i = 0; i <= 2; i++)
+	{
+		threeontop[i] = true;
+	}
 }
 
 int Set_Algorithmus::getPoints(int player)

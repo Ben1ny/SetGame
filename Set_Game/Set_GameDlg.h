@@ -62,4 +62,5 @@ public:
 	Set_Algorithmus *SpielBeginnt;
 	Set_Deck *CardStack;
 	Set_Card *p;
+	CString points;
 };

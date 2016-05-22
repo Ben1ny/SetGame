@@ -67,7 +67,9 @@ CSet_GameDlg::CSet_GameDlg(CWnd* pParent /*=NULL*/)
 
 	//	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 	SpielBeginnt = new Set_Algorithmus;
-	// CardStack = new Set_Deck;
+	CardStack = new Set_Deck;
+	points = "0";
+	
 }
 
 void CSet_GameDlg::DoDataExchange(CDataExchange* pDX)
@@ -217,17 +219,17 @@ void CSet_GameDlg::OnSpielerSpieler1()
 
 void CSet_GameDlg::OnOnspielneuesspiel()
 {
-	//Set_Deck CardStack;
-	//CardsOnTable = CardStack->Set_GetTheTwelve();
-	//Set_Algorithmus SpielBeginnt;
-	CardStack = new Set_Deck;
+	delete CardStack;
+	CardStack = new Set_Deck();
+	//CardStack = new Set_Deck;			//Eingefügt vom Thomas vielleicht ändern
 	if (SpielBeginnt->CheckBuildUp(CardStack->Set_GetStartUpTheTwelve()) == true)
 	{
 		SpielBeginnt->BuildtheDeck(CardStack->Set_GetTheTwelve(), this);
 	}
 	else
 	{
-		SpielBeginnt->BuildtheDeckThreeMore(CardStack->getCardFromDeck(), CardStack->getCardFromDeck(), CardStack->getCardFromDeck(), CardStack->Set_GetTheTwelve(), this);
+		SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve());
+		SpielBeginnt->BuildtheDeckThreeMore(CardStack->Set_GetTheTwelve(), this);
 	}
 	UpdateWindow();
 }
@@ -255,91 +257,124 @@ void CAboutDlg::OnBnClickedOk()
 
 void CSet_GameDlg::OnBnClickedKarte0()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(0), 1, 0, this);
+	
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(0), 0, 0, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+
+	
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte1()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(1), 1, 1, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(1), 0, 1, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte2()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(2), 1, 2, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(2), 0, 2, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte3()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(3), 1, 3, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(3), 0, 3, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte4()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(4), 1, 4, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(4), 0, 4, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte5()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(5), 1, 5, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(5), 0, 5, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte6()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(6), 1, 6, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(6), 0, 6, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte7()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(7), 1, 7, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(7), 0, 7, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte8()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(8), 1, 8, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(8), 0, 8, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte9()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(9), 1, 9, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(9), 0, 9, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte10()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(10), 1, 10, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(10), 0, 10, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte11()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(11), 1, 11, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(11), 0, 11, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte12()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(12), 1, 12, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(12), 0, 12, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte13()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(13), 1, 13, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(13), 0, 13, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte14()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(14), 1, 14, this);
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(14), 0, 14, this);
+	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
+	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }

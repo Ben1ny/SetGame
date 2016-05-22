@@ -9,6 +9,7 @@ class Set_Card
 {
 public:
 	Set_Card();
+	~Set_Card();
 	Set_Card(int, std::string, std::string, std::string, int);
 	int getCardAnzahl();
 	std::string getCardForm();
@@ -33,20 +34,21 @@ class Set_Deck
 {
 public:
 	Set_Deck();
+	~Set_Deck();
 	Set_Card getCardFromDeck();
 	void Set_PrintDeck();
 	int Set_getDeckRemainingCards();
-	array <Set_Card, 12> Set_GetStartUpTheTwelve();
-	array <Set_Card, 12> Set_GetTheTwelve();
+	array <Set_Card, 15> Set_GetStartUpTheTwelve();
+	array <Set_Card, 15> Set_GetTheTwelve();
 	Set_Card Set_GetCardFromTwelve(int);
 	//array <Set_Card, 12> Set_GetTheTwelve();
-	//void Set_SetTheTwelve(Set_Card, int);
-	void Set_SetTheTwelve(int);
+	void Set_SetTheTwelve(Set_Card, int);
+	//void Set_SetTheTwelve(int);
 	
 protected:
 	array <Set_Card, 81> Deck;
 private:
-	array <Set_Card, 12> TheTwelve;
+	array <Set_Card, 15> TheTwelve;
 
 };
 
