@@ -208,7 +208,6 @@ void CSet_GameDlg::OnCbnDropdownCombo1()
 
 void CSet_GameDlg::OnSpielerSpieler1()
 {
-	Set_BuildUp a(1);
 	Set_GameDlg2 window2;
 	window2.DoModal();
 	//MessageBox(_T("a"), _T("Information"),
