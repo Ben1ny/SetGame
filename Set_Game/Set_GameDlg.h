@@ -63,4 +63,9 @@ public:
 	Set_Deck *CardStack;
 	Set_Card *p;
 	CString points;
+	CString nameplayer;
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 };

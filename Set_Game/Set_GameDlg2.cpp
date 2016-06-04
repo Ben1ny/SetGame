@@ -20,10 +20,12 @@ Set_GameDlg2::Set_GameDlg2(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_DIALOG1, pParent)
 {
 
+	(*((CSet_GameDlg*)(pParent))).SpielBeginnt;
 }
 
 Set_GameDlg2::~Set_GameDlg2()
 {
+
 }
 
 void Set_GameDlg2::DoDataExchange(CDataExchange* pDX)
@@ -45,9 +47,11 @@ END_MESSAGE_MAP()
 
 void Set_GameDlg2::OnBnClickedOk()
 {
+	
 	//a.getName();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 	CDialogEx::OnOK();
+	//EndDialog(0);
 }
 
 void Set_GameDlg2::OnEnChangeEdit2()

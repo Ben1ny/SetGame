@@ -224,3 +224,11 @@ string Set_Algorithmus::getPlayer(int player)
 	return spieler_name[player];
 }
 
+string Set_Algorithmus::getName(int i)
+{
+	return spieler_name[i];
+}
+void Set_Algorithmus::setName(int i, string name)
+{
+	spieler_name[i] = name;
+}

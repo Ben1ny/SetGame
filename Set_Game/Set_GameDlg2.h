@@ -1,6 +1,6 @@
 #pragma once
 
-
+class Set_Algorithmus;
 // Set_GameDlg2 dialog
 
 class Set_GameDlg2 : public CDialogEx
@@ -26,4 +26,5 @@ public:
 	afx_msg void OnEnChangeEdit5();
 	afx_msg void OnEnChangeEdit4();
 	afx_msg void OnBnClickedOk();
+	Set_Algorithmus *test;
 };

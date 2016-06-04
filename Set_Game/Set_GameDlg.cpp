@@ -41,6 +41,7 @@ protected:
 	
 public:
 	afx_msg void OnBnClickedOk();
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
@@ -102,6 +103,10 @@ BEGIN_MESSAGE_MAP(CSet_GameDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_Karte12, &CSet_GameDlg::OnBnClickedKarte12)
 	ON_BN_CLICKED(IDC_Karte13, &CSet_GameDlg::OnBnClickedKarte13)
 	ON_BN_CLICKED(IDC_Karte14, &CSet_GameDlg::OnBnClickedKarte14)
+	ON_WM_KEYDOWN()
+	ON_BN_CLICKED(IDC_BUTTON1, &CSet_GameDlg::OnBnClickedButton1)
+	ON_WM_KEYUP()
+	ON_WM_ACTIVATE()
 END_MESSAGE_MAP()
 
 
@@ -208,7 +213,7 @@ void CSet_GameDlg::OnCbnDropdownCombo1()
 
 void CSet_GameDlg::OnSpielerSpieler1()
 {
-	Set_GameDlg2 window2;
+	Set_GameDlg2 window2(this);
 	window2.DoModal();
 	//MessageBox(_T("a"), _T("Information"),
 	//MB_ICONINFORMATION | MB_OK | MB_ABORTRETRYIGNORE);
@@ -218,6 +223,13 @@ void CSet_GameDlg::OnSpielerSpieler1()
 
 void CSet_GameDlg::OnOnspielneuesspiel()
 {
+	Set_GameDlg2 window2(this);
+	window2.DoModal();
+	
+	//nameplayer.Format(_T("%s"), ("Test"));//(SpielBeginnt->getName(0)));
+	//this->GetDlgItem(IDC_EDIT1)->SetWindowTextW(nameplayer);
+
+
 	delete CardStack;
 	CardStack = new Set_Deck();
 	//CardStack = new Set_Deck;			//Eingefügt vom Thomas vielleicht ändern
@@ -230,6 +242,9 @@ void CSet_GameDlg::OnOnspielneuesspiel()
 		SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve());
 		SpielBeginnt->BuildtheDeckThreeMore(CardStack->Set_GetTheTwelve(), this);
 	}
+	this->GetDlgItem(IDC_ThreeCards)->EnableWindow(true);
+	/*CButton* pButton = (CButton*)CSet_GameDlg->GetDlgItem();
+	pButton->EnableWindow(false);*/
 	UpdateWindow();
 }
 
@@ -376,4 +391,44 @@ void CSet_GameDlg::OnBnClickedKarte14()
 	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+
+
+
+
+void CSet_GameDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	int a = 0;
+	//TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
+	/*MessageBox(_T("a"), _T("Information"),
+		MB_ICONINFORMATION | MB_OK | MB_ABORTRETRYIGNORE);*/
+	CSet_GameDlg::OnKeyDown(nChar, nRepCnt, nFlags);
+	//CDialogEx::OnKeyDown(nChar, nRepCnt, nFlags);
+	MessageBox(_T("a"), _T("Information"),
+		MB_ICONINFORMATION | MB_OK | MB_ABORTRETRYIGNORE);
+}
+
+
+void CSet_GameDlg::OnBnClickedButton1()
+{
+	SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve());
+	SpielBeginnt->BuildtheDeckThreeMore(CardStack->Set_GetTheTwelve(), this);
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+
+
+void CSet_GameDlg::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
+	
+	CDialogEx::OnKeyUp(nChar, nRepCnt, nFlags);
+	int a = 0;
+}
+
+
+void CSet_GameDlg::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
+{
+	CDialogEx::OnActivate(nState, pWndOther, bMinimized);
+	int a = 0;
+	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein.
 }

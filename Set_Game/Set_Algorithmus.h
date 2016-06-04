@@ -20,7 +20,8 @@ public:
 	void ThreeButtonsSet(Set_Deck &, array <Set_Card, 15> &, Set_Card &, int, int, CSet_GameDlg *);
 	void GetThreeMore(Set_Deck &, array <Set_Card, 15> &);
 
-
+	std::string getName(int);
+	void setName(int, std::string);
 	std::string getPlayer(int);
 	int getPoints(int);
 	void setPoints(int, int);
