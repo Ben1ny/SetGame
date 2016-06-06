@@ -16,23 +16,31 @@ Set_Algorithmus::Set_Algorithmus()
 {
 	buttons_array = new int[15]{ IDC_Karte0, IDC_Karte1, IDC_Karte2, IDC_Karte3, IDC_Karte4, IDC_Karte5, IDC_Karte6, IDC_Karte7, IDC_Karte8,
 		IDC_Karte9, IDC_Karte10, IDC_Karte11, IDC_Karte12, IDC_Karte13, IDC_Karte14 };
-	points = new int[4]{0};
+	currentplayer = 4;
+	//current_player_array = new int[4]{ IDC_Sp1_Punkte, IDC_Sp2_Punkte, IDC_Sp3_Punkte, IDC_Sp4_Punkte};
 	auswahl_check = new Set_Card[3]{};
 	threeforcheck = 0;
 	zwischenspeicher = new int[3]{0};
 	lastbutton = 15;
 	threemoreflag = false;
 	threeontop = new bool[3]{ false, false, false };
+	points = new int[4]{ 0, 0, 0, 0 };
+	spieler_name = new CString[4];
+	numberofplayers = 0;
+	/*for (int i = 0; i < 4; i++)
+	{
+		spieler_name[i] = ("Spieler"+i);
+	}*/
 }
 
 Set_Algorithmus::Set_Algorithmus(int anzahl, string *spieler)
 {
-	points = new int[anzahl];
+	/*points = new int[anzahl];
 	spieler_name = new string[anzahl];
 	for (int i = 0; i < anzahl; i++)
 	{
 		spieler_name[i] = *spieler;
-	}
+	}*/
 }
 
 Set_Algorithmus::~Set_Algorithmus()
@@ -132,6 +140,7 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 	}
 	if(threeforcheck == 3)
 	{
+		currentplayer = 4;			// wird auf 4 gesetzt damit neue Auswahl nötig ist bei Kartenwahl
 		lastbutton = 15;			// wird auf 15 gesetzt damit kein Konflikt mit den anderen Buttons am anfang besteht.
 		threeforcheck = 0;
 		if (Set_Algorithmus::CheckForSet(auswahl_check[0], auswahl_check[1], auswahl_check[2]) == true)
@@ -177,6 +186,7 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 					threeontop[(zwischenspeicher[i] - 12)] = false;
 				}
 			}
+			//hier weiter machen
 			//Set_Algorithmus::BuildtheDeck(deck.Set_GetStartUpTheTwelve(), Dlg);
 			Set_Algorithmus::BuildtheDeck(deck.Set_GetTheTwelve(), Dlg);
 		}
@@ -219,16 +229,44 @@ void Set_Algorithmus::setPoints(int player, int point)
 	points[player] += point;
 }
 
-string Set_Algorithmus::getPlayer(int player)
+
+
+CString Set_Algorithmus::getName(int player)
 {
 	return spieler_name[player];
 }
-
-string Set_Algorithmus::getName(int i)
-{
-	return spieler_name[i];
-}
-void Set_Algorithmus::setName(int i, string name)
+void Set_Algorithmus::setName(int i, CString name)
 {
 	spieler_name[i] = name;
+}
+
+void Set_Algorithmus::displayPoints(CSet_GameDlg *Dlg)
+{
+	CString point_s = L"";
+	point_s.Format(_T("%d"), (getPoints(0)));
+	Dlg->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(point_s);
+	point_s.Format(_T("%d"), (getPoints(1)));
+	Dlg->GetDlgItem(IDC_Sp2_Punkte)->SetWindowTextW(point_s);
+	point_s.Format(_T("%d"), (getPoints(2)));
+	Dlg->GetDlgItem(IDC_Sp3_Punkte)->SetWindowTextW(point_s);
+	point_s.Format(_T("%d"), (getPoints(3)));
+	Dlg->GetDlgItem(IDC_Sp4_Punkte)->SetWindowTextW(point_s);
+}
+
+void Set_Algorithmus::setCurrentPlayer(int who)
+{
+	currentplayer = who;
+}
+int Set_Algorithmus::getCurrentPlayer()
+{
+	return currentplayer;
+}
+
+int Set_Algorithmus::getNumberOfPlayers()
+{
+	return numberofplayers;
+}
+void Set_Algorithmus::setNumberOfPlayers(int number)
+{
+	numberofplayers = number;
 }
