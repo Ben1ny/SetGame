@@ -20,10 +20,15 @@ public:
 	void ThreeButtonsSet(Set_Deck &, array <Set_Card, 15> &, Set_Card &, int, int, CSet_GameDlg *);
 	void GetThreeMore(Set_Deck &, array <Set_Card, 15> &);
 
-
-	std::string getPlayer(int);
+	CString getName(int);
+	void setName(int, CString);
 	int getPoints(int);
 	void setPoints(int, int);
+	void displayPoints(CSet_GameDlg *);
+	void setCurrentPlayer(int);
+	int getCurrentPlayer();
+	int getNumberOfPlayers();
+	void setNumberOfPlayers(int);
 
 private:
 	bool *threeontop;
@@ -33,11 +38,10 @@ private:
 	int threeforcheck;
 	int *zwischenspeicher;
 	Set_Card *auswahl_check;
-	std::string *spieler_name;
-	/*int buttons_array[15] = {IDC_Karte0, IDC_Karte1, IDC_Karte2, IDC_Karte3, IDC_Karte4, IDC_Karte5, IDC_Karte6, IDC_Karte7, IDC_Karte8,
-							IDC_Karte9, IDC_Karte10, IDC_Karte11, IDC_Karte12, IDC_Karte13, IDC_Karte14};*/
+	CString *spieler_name;
 	int *buttons_array;
-
+	int currentplayer;
+	int numberofplayers;
 };
 
 

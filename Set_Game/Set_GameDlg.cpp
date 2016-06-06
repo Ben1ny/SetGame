@@ -41,6 +41,7 @@ protected:
 	
 public:
 	afx_msg void OnBnClickedOk();
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
@@ -68,8 +69,6 @@ CSet_GameDlg::CSet_GameDlg(CWnd* pParent /*=NULL*/)
 	//	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 	SpielBeginnt = new Set_Algorithmus;
 	CardStack = new Set_Deck;
-	points = "0";
-	
 }
 
 void CSet_GameDlg::DoDataExchange(CDataExchange* pDX)
@@ -102,6 +101,14 @@ BEGIN_MESSAGE_MAP(CSet_GameDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_Karte12, &CSet_GameDlg::OnBnClickedKarte12)
 	ON_BN_CLICKED(IDC_Karte13, &CSet_GameDlg::OnBnClickedKarte13)
 	ON_BN_CLICKED(IDC_Karte14, &CSet_GameDlg::OnBnClickedKarte14)
+	ON_WM_KEYDOWN()
+	//ON_BN_CLICKED(IDC_ThreeCards, &CSet_GameDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_ThreeCards, &CSet_GameDlg::OnBnClickedButtonThreeNewCards)
+	ON_WM_KEYUP()
+	ON_WM_ACTIVATE()
+	ON_COMMAND(ID_SPIELER_SPIELER2, &CSet_GameDlg::OnSpielerSpieler2)
+	ON_COMMAND(ID_SPIELER_SPIELER3, &CSet_GameDlg::OnSpielerSpieler3)
+	ON_COMMAND(ID_SPIELER_SPIELER4, &CSet_GameDlg::OnSpielerSpieler4)
 END_MESSAGE_MAP()
 
 
@@ -208,19 +215,39 @@ void CSet_GameDlg::OnCbnDropdownCombo1()
 
 void CSet_GameDlg::OnSpielerSpieler1()
 {
-	Set_GameDlg2 window2;
-	window2.DoModal();
-	//MessageBox(_T("a"), _T("Information"),
-	//MB_ICONINFORMATION | MB_OK | MB_ABORTRETRYIGNORE);
+	SpielBeginnt->setCurrentPlayer(0);
 	// TODO: Fügen Sie hier Ihren Befehlsbehandlungscode ein.
-
 }
+
+void CSet_GameDlg::OnSpielerSpieler2()
+{
+	SpielBeginnt->setCurrentPlayer(1);
+	// TODO: Fügen Sie hier Ihren Befehlsbehandlungscode ein.
+}
+void CSet_GameDlg::OnSpielerSpieler3()
+{
+	SpielBeginnt->setCurrentPlayer(2);
+	// TODO: Fügen Sie hier Ihren Befehlsbehandlungscode ein.
+}
+void CSet_GameDlg::OnSpielerSpieler4()
+{
+	SpielBeginnt->setCurrentPlayer(3);
+	// TODO: Fügen Sie hier Ihren Befehlsbehandlungscode ein.
+}
+
 
 void CSet_GameDlg::OnOnspielneuesspiel()
 {
+	Set_GameDlg2 window2(this);
+	window2.DoModal();
+	//SetDlgItemText(IDC_Sp1_Name, L"Desired Text String");
+	SetDlgItemText(IDC_Sp1_Name, (SpielBeginnt->getName(0)));					//Geht jetzt hier weiter machen
+	SetDlgItemText(IDC_Sp2_Name, (SpielBeginnt->getName(1)));
+	SetDlgItemText(IDC_Sp3_Name, (SpielBeginnt->getName(2)));
+	SetDlgItemText(IDC_Sp4_Name, (SpielBeginnt->getName(3)));
+
 	delete CardStack;
 	CardStack = new Set_Deck();
-	//CardStack = new Set_Deck;			//Eingefügt vom Thomas vielleicht ändern
 	if (SpielBeginnt->CheckBuildUp(CardStack->Set_GetStartUpTheTwelve()) == true)
 	{
 		SpielBeginnt->BuildtheDeck(CardStack->Set_GetTheTwelve(), this);
@@ -230,6 +257,10 @@ void CSet_GameDlg::OnOnspielneuesspiel()
 		SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve());
 		SpielBeginnt->BuildtheDeckThreeMore(CardStack->Set_GetTheTwelve(), this);
 	}
+	this->GetDlgItem(IDC_ThreeCards)->EnableWindow(true);
+	SpielBeginnt->displayPoints(this);
+	/*CButton* pButton = (CButton*)CSet_GameDlg->GetDlgItem();
+	pButton->EnableWindow(false);*/
 	UpdateWindow();
 }
 
@@ -256,124 +287,220 @@ void CAboutDlg::OnBnClickedOk()
 
 void CSet_GameDlg::OnBnClickedKarte0()
 {
-	
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(0), 0, 0, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
-
-	
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(0), (SpielBeginnt->getCurrentPlayer()), 0, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte1()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(1), 0, 1, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(1), SpielBeginnt->getCurrentPlayer(), 1, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte2()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(2), 0, 2, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(2), SpielBeginnt->getCurrentPlayer(), 2, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte3()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(3), 0, 3, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(3), SpielBeginnt->getCurrentPlayer(), 3, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte4()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(4), 0, 4, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(4), SpielBeginnt->getCurrentPlayer(), 4, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte5()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(5), 0, 5, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(5), SpielBeginnt->getCurrentPlayer(), 5, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte6()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(6), 0, 6, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(6), SpielBeginnt->getCurrentPlayer(), 6, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte7()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(7), 0, 7, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(7), SpielBeginnt->getCurrentPlayer(), 7, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte8()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(8), 0, 8, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(8), SpielBeginnt->getCurrentPlayer(), 8, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte9()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(9), 0, 9, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(9), SpielBeginnt->getCurrentPlayer(), 9, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte10()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(10), 0, 10, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(10), SpielBeginnt->getCurrentPlayer(), 10, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte11()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(11), 0, 11, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(11), SpielBeginnt->getCurrentPlayer(), 11, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte12()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(12), 0, 12, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(12), SpielBeginnt->getCurrentPlayer(), 12, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte13()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(13), 0, 13, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(13), SpielBeginnt->getCurrentPlayer(), 13, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 void CSet_GameDlg::OnBnClickedKarte14()
 {
-	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(14), 0, 14, this);
-	points.Format(_T("%d"), (SpielBeginnt->getPoints(0)));
-	this->GetDlgItem(IDC_Sp1_Punkte)->SetWindowTextW(points);
+	if (SpielBeginnt->getNumberOfPlayers() < SpielBeginnt->getCurrentPlayer())
+	{
+		MessageBox(_T("Bitte Spieler auswählen!"), _T("Kein Spieler ausgewählt"), MB_ICONINFORMATION | MB_OK);
+		return;
+	}
+	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(14), SpielBeginnt->getCurrentPlayer(), 14, this);
+	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
+
+void CSet_GameDlg::OnBnClickedButtonThreeNewCards()						//Button für 3 weitere Karten
+{
+	SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve());
+	SpielBeginnt->BuildtheDeckThreeMore(CardStack->Set_GetTheTwelve(), this);
+	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+}
+
+void CSet_GameDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	int a = 0;
+	//TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
+	/*MessageBox(_T("a"), _T("Information"),
+		MB_ICONINFORMATION | MB_OK | MB_ABORTRETRYIGNORE);*/
+	CSet_GameDlg::OnKeyDown(nChar, nRepCnt, nFlags);
+	//CDialogEx::OnKeyDown(nChar, nRepCnt, nFlags);
+	MessageBox(_T("a"), _T("Information"),
+		MB_ICONINFORMATION | MB_OK | MB_ABORTRETRYIGNORE);
+}
+
+void CSet_GameDlg::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
+	
+	CDialogEx::OnKeyUp(nChar, nRepCnt, nFlags);
+	int a = 0;
+}
+
+
+void CSet_GameDlg::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
+{
+	CDialogEx::OnActivate(nState, pWndOther, bMinimized);
+	int a = 0;
+	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein.
+}
+
+
+
+
