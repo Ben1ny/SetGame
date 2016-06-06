@@ -48,8 +48,7 @@ Set_Deck::Set_Deck()
 {
 	string farbe, form, fuellung;
 	int counter = 0;
-	for (int i = 0; i <= 2; i++)
-	{
+	for (int i = 0; i <= 2; i++){				// for-loop to switch colour
 		switch (i)
 		{
 		case 0:
@@ -62,8 +61,7 @@ Set_Deck::Set_Deck()
 			farbe = "blau";
 			break;
 		}
-		for (int j = 0; j <= 2; j++)
-		{
+		for (int j = 0; j <= 2; j++){			// for-loop to switch shape
 			switch (j)
 			{
 			case 0:
@@ -76,8 +74,7 @@ Set_Deck::Set_Deck()
 				form = "Viereck";
 				break;
 			}
-			for (int k = 0; k <= 2; k++)
-			{
+			for (int k = 0; k <= 2; k++){		// for-loop to switch filling
 				switch (k)
 				{
 				case 0:
@@ -90,9 +87,8 @@ Set_Deck::Set_Deck()
 					fuellung = "volle";
 					break;
 				}
-				for (int l = 0; l <= 2; l++)
-				{
-					Deck[counter] = Set_Card(l + 1, form, farbe, fuellung, counter + 1);
+				for (int l = 0; l <= 2; l++){	// for-loop to generate number of symbols on card
+					Deck[counter] = Set_Card(l + 1, form, farbe, fuellung, counter + 1);	// generation of the deck as std::array
 					counter++;
 				}
 			}
