@@ -13,12 +13,12 @@
 using namespace std;
 
 
-Set_Card::Set_Card()
+Set_Card::Set_Card() // default constructor is not used elsewhere, just defined for completeness ( and because there were compiler problems w/o it)
 {
-	
+
 }
 
-Set_Card::Set_Card(int an, string fo, string fa, string fue, int IdNr)
+Set_Card::Set_Card(int an, string fo, string fa, string fue, int IdNr) // in this constructor the value for the 4 different attributes as well as 
 {
 	anzahl = an;
 	form = fo;
@@ -27,19 +27,19 @@ Set_Card::Set_Card(int an, string fo, string fa, string fue, int IdNr)
 	CardId = IdNr;
 }
 
-Set_Card::~Set_Card()
+Set_Card::~Set_Card() // destructor also only defined for completeness
 {
 
 }
 
-int Set_Card::getCardAnzahl() { return anzahl; }
-string Set_Card::getCardForm() { return form; }
-string Set_Card::getCardFarbe() { return farbe; }
-string Set_Card::getCardFuellung() { return fuellung; }
-int Set_Card::getCardId() { return CardId; }
-void Set_Card::delCard() { CardId = -CardId; }
+int Set_Card::getCardAnzahl() { return anzahl; }			// simple getter function used in CheckForSet algo
+string Set_Card::getCardForm() { return form; }				// simple getter function used in CheckForSet algo
+string Set_Card::getCardFarbe() { return farbe; }			// simple getter function used in CheckForSet algo
+string Set_Card::getCardFuellung() { return fuellung; }		// simple getter function used in CheckForSet algo
+int Set_Card::getCardId() { return CardId; }				// simple getter function used in CheckForSet algo
+void Set_Card::delCard() { CardId = -CardId; }				// simple function to set CardId negative, this is used to mark a card as drawn from the stack
 
-void Set_Card::printCard()
+void Set_Card::printCard() // this function was only needed for debugging in the beginning when the whole repository part was only running on console
 {
 	cout << "Kartennr.: " << CardId << "\t" << " Form: " << form << "\t" << " Farbe: " << farbe << "\t" << " Fuellung: " << fuellung << "\t" << "Anzahl: " << anzahl << endl;
 }
