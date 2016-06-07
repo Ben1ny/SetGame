@@ -129,18 +129,19 @@ Set_Card Set_Deck::getCardFromDeck()
 
 int Set_Deck::Set_getDeckRemainingCards()
 {
-	int count = 81;
+	int count = 80;
 	for (int i = 0; i < 81; i++)
 	{
 		if (Deck[i].getCardId() < 0)
 		{
 			count--;
 		}
-		else
+		/*else
 		{
 			return count;
-		}
+		}*/
 	}
+	return count;
 }
 void Set_Deck::Set_PrintDeck()
 {

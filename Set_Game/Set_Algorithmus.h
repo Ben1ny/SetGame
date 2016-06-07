@@ -10,7 +10,6 @@ class Set_Algorithmus
 {
 public:
 	Set_Algorithmus();
-	Set_Algorithmus(int, std::string*);
 	~Set_Algorithmus();
 
 	bool CheckBuildUp(array <Set_Card, 15>);
@@ -29,11 +28,14 @@ public:
 	int getCurrentPlayer();
 	int getNumberOfPlayers();
 	void setNumberOfPlayers(int);
+	bool getEndGame();
+	void resetPoints();
 
 private:
 	bool *threeontop;
 	bool threemoreflag;
 	int *points;
+	int *result;
 	int lastbutton;
 	int threeforcheck;
 	int *zwischenspeicher;
@@ -42,6 +44,11 @@ private:
 	int *buttons_array;
 	int currentplayer;
 	int numberofplayers;
+	bool endgame;
+	int prime;
+	int second;
+	int third;
+	int last;
 };
 
 

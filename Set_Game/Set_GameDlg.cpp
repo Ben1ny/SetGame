@@ -245,7 +245,7 @@ void CSet_GameDlg::OnOnspielneuesspiel()
 	SetDlgItemText(IDC_Sp2_Name, (SpielBeginnt->getName(1)));
 	SetDlgItemText(IDC_Sp3_Name, (SpielBeginnt->getName(2)));
 	SetDlgItemText(IDC_Sp4_Name, (SpielBeginnt->getName(3)));
-
+	SpielBeginnt->resetPoints();
 	delete CardStack;
 	CardStack = new Set_Deck();
 	if (SpielBeginnt->CheckBuildUp(CardStack->Set_GetStartUpTheTwelve()) == true)
@@ -468,8 +468,11 @@ void CSet_GameDlg::OnBnClickedKarte14()
 
 void CSet_GameDlg::OnBnClickedButtonThreeNewCards()						//Button für 3 weitere Karten
 {
-	SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve());
-	SpielBeginnt->BuildtheDeckThreeMore(CardStack->Set_GetTheTwelve(), this);
+	if (CardStack->Set_getDeckRemainingCards() > 3)
+	{
+		SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve());
+		SpielBeginnt->BuildtheDeckThreeMore(CardStack->Set_GetTheTwelve(), this);
+	}
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 
