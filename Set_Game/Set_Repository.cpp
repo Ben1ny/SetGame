@@ -95,9 +95,14 @@ Set_Deck::Set_Deck()
 		}
 
 	}
-	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-	shuffle(Deck.begin(), Deck.end(), std::default_random_engine(seed));
+	unsigned seed = chrono::system_clock::now().time_since_epoch().count();		// generation of a seed number from the system time
+	shuffle(Deck.begin(), Deck.end(), std::default_random_engine(seed));		// mix of the generated Deck using function shuffle and the generated seed
 
+	seed = chrono::system_clock::now().time_since_epoch().count();				// generation of a new seed; test has shown this will be already different then the previous one
+	shuffle(Deck.begin(), Deck.end(), std::default_random_engine(seed));		// mix the Deck a second time
+
+	seed = chrono::system_clock::now().time_since_epoch().count();
+	shuffle(Deck.begin(), Deck.end(), std::default_random_engine(seed));		// mix the Deck a 3rd time
 }
 
 Set_Deck::~Set_Deck()
