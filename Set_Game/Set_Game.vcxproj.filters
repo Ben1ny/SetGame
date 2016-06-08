@@ -39,9 +39,6 @@
     <ClInclude Include="Set_Algorithmus.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Set_BuildUp.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Set_GameDlg2.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -62,9 +59,6 @@
     <ClCompile Include="Set_Algorithmus.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Set_BuildUp.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Set_GameDlg2.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -78,6 +72,10 @@
     <None Include="res\Set_Game.rc2">
       <Filter>Ressourcendateien</Filter>
     </None>
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram21.cd" />
+    <None Include="ClassDiagram22.cd" />
+    <None Include="ClassDiagram23.cd" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Set_Game.ico">

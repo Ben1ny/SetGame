@@ -1,9 +1,16 @@
 
 // Set_GameDlg.h: Headerdatei
 //
-#include "Resource.h"
 
 #pragma once
+#include "Resource.h"
+//#include <array>
+
+using namespace std;
+
+class Set_Algorithmus;
+class Set_Deck;
+class Set_Card;
 
 
 // CSet_GameDlg-Dialogfeld
@@ -52,4 +59,16 @@ public:
 	afx_msg void OnBnClickedKarte12();
 	afx_msg void OnBnClickedKarte13();
 	afx_msg void OnBnClickedKarte14();
+	Set_Algorithmus *SpielBeginnt;
+	Set_Deck *CardStack;
+	Set_Card *p;
+	//CString points;
+	CString nameplayer;
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnBnClickedButtonThreeNewCards();
+	afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
+	afx_msg void OnSpielerSpieler2();
+	afx_msg void OnSpielerSpieler3();
+	afx_msg void OnSpielerSpieler4();
 };

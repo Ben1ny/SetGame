@@ -20,10 +20,12 @@ Set_GameDlg2::Set_GameDlg2(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_DIALOG1, pParent)
 {
 
+	test = (*((CSet_GameDlg*)(pParent))).SpielBeginnt;
 }
 
 Set_GameDlg2::~Set_GameDlg2()
 {
+
 }
 
 void Set_GameDlg2::DoDataExchange(CDataExchange* pDX)
@@ -45,8 +47,41 @@ END_MESSAGE_MAP()
 
 void Set_GameDlg2::OnBnClickedOk()
 {
-	//a.getName();
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	CString input = L" ";
+	int anzahl = 0;
+	GetDlgItemText(IDC_NameEdit1, input);
+	if (input == L"")
+	{
+		input = L"Spieler 1";
+	};
+	test->setName(0, input);
+	GetDlgItemText(IDC_NameEdit2, input);
+	if (input == L"")
+	{
+		input = L"Spieler 2";
+	};
+	test->setName(1, input);
+	GetDlgItemText(IDC_NameEdit3, input);
+	if (input == L"")
+	{
+		input = L"Spieler 3";
+	};
+	test->setName(2, input);
+	GetDlgItemText(IDC_NameEdit4, input);
+	if (input == L"")
+	{
+		input = L"Spieler 4";
+	};
+	test->setName(3, input);
+	GetDlgItemText(IDC_Spieler_Anzahl, input);
+	anzahl = _wtoi(input);
+	anzahl = anzahl - 1;
+	if (anzahl > 3 || anzahl < 0)
+	{
+		MessageBox(_T("Bitte Eingabe korrigieren! \nSpieleranzahl 1-4"), _T("Ungültige Eingabe"),MB_ICONINFORMATION| MB_OK);
+		return;
+	}
+	test->setNumberOfPlayers(anzahl);
 	CDialogEx::OnOK();
 }
 

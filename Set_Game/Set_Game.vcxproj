@@ -19,7 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
@@ -103,7 +103,6 @@
   <ItemGroup>
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Set_Algorithmus.h" />
-    <ClInclude Include="Set_BuildUp.h" />
     <ClInclude Include="Set_Game.h" />
     <ClInclude Include="Set_GameDlg.h" />
     <ClInclude Include="Set_GameDlg2.h" />
@@ -113,7 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Set_Algorithmus.cpp" />
-    <ClCompile Include="Set_BuildUp.cpp" />
     <ClCompile Include="Set_Game.cpp" />
     <ClCompile Include="Set_GameDlg.cpp" />
     <ClCompile Include="Set_GameDlg2.cpp" />
@@ -127,6 +125,10 @@
     <ResourceCompile Include="Set_Game.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram21.cd" />
+    <None Include="ClassDiagram22.cd" />
+    <None Include="ClassDiagram23.cd" />
     <None Include="res\Set_Game.rc2" />
   </ItemGroup>
   <ItemGroup>

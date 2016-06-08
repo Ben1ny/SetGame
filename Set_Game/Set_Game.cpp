@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "Set_Game.h"
 #include "Set_GameDlg.h"
+#include <array>
 
 
 #ifdef _DEBUG
@@ -90,7 +91,6 @@ BOOL CSet_GameApp::InitInstance()
 		TRACE(traceAppMsg, 0, "Warnung: Fehler bei der Dialogfelderstellung, unerwartetes Beenden der Anwendung.\n");
 		TRACE(traceAppMsg, 0, "Warnung: Wenn Sie MFC-Steuerelemente im Dialogfeld verwenden, ist #define _AFX_NO_MFC_CONTROLS_IN_DIALOGS nicht möglich.\n");
 	}
-
 	// Den oben erstellten Shell-Manager löschen.
 	if (pShellManager != NULL)
 	{

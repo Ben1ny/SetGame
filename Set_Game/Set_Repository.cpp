@@ -13,12 +13,12 @@
 using namespace std;
 
 
-Set_Card::Set_Card()
+Set_Card::Set_Card() // default constructor is not used elsewhere, just defined for completeness ( and because there were compiler problems w/o it)
 {
-	;
+
 }
 
-Set_Card::Set_Card(int an, string fo, string fa, string fue, int IdNr)
+Set_Card::Set_Card(int an, string fo, string fa, string fue, int IdNr) // in this constructor the value for the 4 different attributes as well as 
 {
 	anzahl = an;
 	form = fo;
@@ -27,14 +27,19 @@ Set_Card::Set_Card(int an, string fo, string fa, string fue, int IdNr)
 	CardId = IdNr;
 }
 
-int Set_Card::getCardAnzahl() { return anzahl; }
-string Set_Card::getCardForm() { return form; }
-string Set_Card::getCardFarbe() { return farbe; }
-string Set_Card::getCardFuellung() { return fuellung; }
-int Set_Card::getCardId() { return CardId; }
-void Set_Card::delCard() { CardId = -CardId; }
+Set_Card::~Set_Card() // destructor also only defined for completeness
+{
 
-void Set_Card::printCard()
+}
+
+int Set_Card::getCardAnzahl() { return anzahl; }			// simple getter function used in CheckForSet algo
+string Set_Card::getCardForm() { return form; }				// simple getter function used in CheckForSet algo
+string Set_Card::getCardFarbe() { return farbe; }			// simple getter function used in CheckForSet algo
+string Set_Card::getCardFuellung() { return fuellung; }		// simple getter function used in CheckForSet algo
+int Set_Card::getCardId() { return CardId; }				// simple getter function used in CheckForSet algo
+void Set_Card::delCard() { CardId = -CardId; }				// simple function to set CardId negative, this is used to mark a card as drawn from the stack
+
+void Set_Card::printCard() // this function was only needed for debugging in the beginning when the whole repository part was only running on console
 {
 	cout << "Kartennr.: " << CardId << "\t" << " Form: " << form << "\t" << " Farbe: " << farbe << "\t" << " Fuellung: " << fuellung << "\t" << "Anzahl: " << anzahl << endl;
 }
@@ -43,8 +48,7 @@ Set_Deck::Set_Deck()
 {
 	string farbe, form, fuellung;
 	int counter = 0;
-	for (int i = 0; i <= 2; i++)
-	{
+	for (int i = 0; i <= 2; i++){				// for-loop to switch colour
 		switch (i)
 		{
 		case 0:
@@ -57,8 +61,7 @@ Set_Deck::Set_Deck()
 			farbe = "blau";
 			break;
 		}
-		for (int j = 0; j <= 2; j++)
-		{
+		for (int j = 0; j <= 2; j++){			// for-loop to switch shape
 			switch (j)
 			{
 			case 0:
@@ -71,8 +74,7 @@ Set_Deck::Set_Deck()
 				form = "Viereck";
 				break;
 			}
-			for (int k = 0; k <= 2; k++)
-			{
+			for (int k = 0; k <= 2; k++){		// for-loop to switch filling
 				switch (k)
 				{
 				case 0:
@@ -85,17 +87,26 @@ Set_Deck::Set_Deck()
 					fuellung = "volle";
 					break;
 				}
-				for (int l = 0; l <= 2; l++)
-				{
-					Deck[counter] = Set_Card(l + 1, form, farbe, fuellung, counter + 1);
+				for (int l = 0; l <= 2; l++){	// for-loop to generate number of symbols on card
+					Deck[counter] = Set_Card(l + 1, form, farbe, fuellung, counter + 1);	// generation of the deck as std::array
 					counter++;
 				}
 			}
 		}
 
 	}
-	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-	shuffle(Deck.begin(), Deck.end(), std::default_random_engine(seed));
+	unsigned seed = chrono::system_clock::now().time_since_epoch().count();		// generation of a seed number from the system time
+	shuffle(Deck.begin(), Deck.end(), std::default_random_engine(seed));		// mix of the generated Deck using function shuffle and the generated seed
+
+	seed = chrono::system_clock::now().time_since_epoch().count();				// generation of a new seed; test has shown this will be already different then the previous one
+	shuffle(Deck.begin(), Deck.end(), std::default_random_engine(seed));		// mix the Deck a second time
+
+	seed = chrono::system_clock::now().time_since_epoch().count();
+	shuffle(Deck.begin(), Deck.end(), std::default_random_engine(seed));		// mix the Deck a 3rd time
+}
+
+Set_Deck::~Set_Deck()
+{
 
 }
 
@@ -117,6 +128,22 @@ Set_Card Set_Deck::getCardFromDeck()
 
 }
 
+int Set_Deck::Set_getDeckRemainingCards()
+{
+	int count = 80;
+	for (int i = 0; i < 81; i++)
+	{
+		if (Deck[i].getCardId() < 0)
+		{
+			count--;
+		}
+		/*else
+		{
+			return count;
+		}*/
+	}
+	return count;
+}
 void Set_Deck::Set_PrintDeck()
 {
 	cout << "Kartenstapel:" << endl;
@@ -127,23 +154,39 @@ void Set_Deck::Set_PrintDeck()
 	}
 }
 
-Set_TheTwelve::Set_TheTwelve()
+/*Set_TheTwelve::Set_TheTwelve()
 {
 
-}
+}*/
 
 
-array <Set_Card, 12> Set_Deck::Set_GetTheTwelve()
+array <Set_Card, 15> Set_Deck::Set_GetStartUpTheTwelve()
 {
-	array <Set_Card, 12> TheTwelve;
-	for (int i = 0; i < 12; i++)
+	//array <Set_Card, 12> TheTwelve;
+	for (int i = 0; i <= 11; i++)
 	{
-		TheTwelve[i] = getCardFromDeck();
-		return TheTwelve;
+			TheTwelve[i] = getCardFromDeck();
 	}
+	return TheTwelve;
 }
 
-void Set_TheTwelve::Set_PrintTheTwelve()
+array <Set_Card, 15> Set_Deck::Set_GetTheTwelve()
+{
+	return TheTwelve;
+}
+
+void Set_Deck::Set_SetTheTwelve(Set_Card card, int position)
+{
+	//TheTwelve[position] = getCardFromDeck();
+	TheTwelve[position] = card;
+}
+
+Set_Card Set_Deck::Set_GetCardFromTwelve(int position)
+{
+	return (TheTwelve[position]);
+}
+
+/*void Set_TheTwelve::Set_PrintTheTwelve()
 {
 	array <Set_Card, 12> TheTwelve; //obsolete code...
 	cout << "12 Karten:" << endl;
@@ -152,7 +195,7 @@ void Set_TheTwelve::Set_PrintTheTwelve()
 		cout << "Kartennr.: " << TheTwelve[i].getCardId() << "\t" << " Form: " << TheTwelve[i].getCardForm() << "\t" << " Farbe: " << TheTwelve[i].getCardFarbe() << "\t" << " Fuellung: " << TheTwelve[i].getCardFuellung() << "\t" << "Anzahl: " << TheTwelve[i].getCardAnzahl() << endl;
 
 	}
-}
+}*/
 
 
 
