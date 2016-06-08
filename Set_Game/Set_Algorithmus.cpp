@@ -181,10 +181,10 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 						}
 						else
 						{
-							if (deck.Set_getDeckRemainingCards() > 1)
+							if (deck.Set_getDeckRemainingCards() > 0)
 							{
 								deck.Set_SetTheTwelve(deck.getCardFromDeck(), zwischenspeicher[i]);
-								if (deck.Set_getDeckRemainingCards() == 1)
+								if (deck.Set_getDeckRemainingCards() == 0)
 								{
 									endgame = true;
 								}
@@ -197,6 +197,7 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 						}
 						if ((threeontop[0] == false) && (threeontop[1] == false) && (threeontop[2] == false))
 						{
+
 							threemoreflag = false;
 						}
 					}
@@ -215,6 +216,14 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 				}
 				
 			}
+			else
+			{
+				for (int k = 0; k <= 2; k++)
+				{
+					CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[zwischenspeicher[k]]);
+					pButton->EnableWindow(true);
+				}
+			}
 			for (int k = 0; k <= 2; k++)
 			{
 				if (zwischenspeicher[k] <= 11)
@@ -227,6 +236,8 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 		if ((threeontop[0] == false) && (threeontop[1] == false) && (threeontop[2] == false))
 		{
 			threemoreflag = false;
+			CButton* pButton1 = (CButton*)Dlg->GetDlgItem(IDC_ThreeCards);
+			pButton1->EnableWindow(true);
 		}
 	}
 	if(endgame == true)
@@ -256,33 +267,30 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 	}
 }
 
-void Set_Algorithmus::GetThreeMore(Set_Deck &deck, array <Set_Card, 15> &CardsUp)
+void Set_Algorithmus::GetThreeMore(Set_Deck &deck, array <Set_Card, 15> &CardsUp, CSet_GameDlg *Dlg)
 {
-	if (deck.Set_getDeckRemainingCards() > 3)
+	threemoreflag = true;
+	CButton* pButton1 = (CButton*)Dlg->GetDlgItem(IDC_ThreeCards);
+	pButton1->EnableWindow(false);
+
+	for (int i = 12; i <= 14; i++)
 	{
-		threemoreflag = true;
-		for (int i = 12; i <= 14; i++)
-		{
-			deck.Set_SetTheTwelve(deck.getCardFromDeck(), i);
-		}
-		for (int i = 0; i <= 2; i++)
-		{
-			threeontop[i] = true;
-		}
+		deck.Set_SetTheTwelve(deck.getCardFromDeck(), i);
 	}
-	
+	for (int i = 0; i <= 2; i++)
+	{
+		threeontop[i] = true;
+	}
 }
 
 int Set_Algorithmus::getPoints(int player)
 {
 	return points[player];
 }
-
 void Set_Algorithmus::setPoints(int player, int point)
 {
 	points[player] += point;
 }
-
 void Set_Algorithmus::resetPoints()
 {
 	for (int i = 0; i < 4; i++)
@@ -290,17 +298,6 @@ void Set_Algorithmus::resetPoints()
 		points[i] = 0;
 	}
 }
-
-
-CString Set_Algorithmus::getName(int player)
-{
-	return spieler_name[player];
-}
-void Set_Algorithmus::setName(int i, CString name)
-{
-	spieler_name[i] = name;
-}
-
 void Set_Algorithmus::displayPoints(CSet_GameDlg *Dlg)
 {
 	CString point_s = L"";
@@ -313,6 +310,17 @@ void Set_Algorithmus::displayPoints(CSet_GameDlg *Dlg)
 	point_s.Format(_T("%d"), (getPoints(3)));
 	Dlg->GetDlgItem(IDC_Sp4_Punkte)->SetWindowTextW(point_s);
 }
+
+CString Set_Algorithmus::getName(int player)
+{
+	return spieler_name[player];
+}
+void Set_Algorithmus::setName(int i, CString name)
+{
+	spieler_name[i] = name;
+}
+
+
 
 void Set_Algorithmus::setCurrentPlayer(int who)
 {
@@ -334,4 +342,8 @@ void Set_Algorithmus::setNumberOfPlayers(int number)
 bool Set_Algorithmus::getEndGame()
 {
 	return endgame;
+}
+bool Set_Algorithmus::getThreeMoreFlag()
+{
+	return threemoreflag;
 }

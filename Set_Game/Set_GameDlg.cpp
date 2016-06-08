@@ -254,7 +254,7 @@ void CSet_GameDlg::OnOnspielneuesspiel()
 	}
 	else
 	{
-		SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve());
+		SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve(), this);
 		SpielBeginnt->BuildtheDeckThreeMore(CardStack->Set_GetTheTwelve(), this);
 	}
 	this->GetDlgItem(IDC_ThreeCards)->EnableWindow(true);
@@ -468,9 +468,9 @@ void CSet_GameDlg::OnBnClickedKarte14()
 
 void CSet_GameDlg::OnBnClickedButtonThreeNewCards()						//Button für 3 weitere Karten
 {
-	if (CardStack->Set_getDeckRemainingCards() > 3)
+	if (CardStack->Set_getDeckRemainingCards() >= 3)
 	{
-		SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve());
+		SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve(), this);
 		SpielBeginnt->BuildtheDeckThreeMore(CardStack->Set_GetTheTwelve(), this);
 	}
 	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.

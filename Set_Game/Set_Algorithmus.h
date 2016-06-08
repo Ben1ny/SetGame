@@ -17,7 +17,7 @@ public:
 	void BuildtheDeckThreeMore(array <Set_Card, 15>, CSet_GameDlg *);
 	bool CheckForSet(Set_Card, Set_Card, Set_Card);
 	void ThreeButtonsSet(Set_Deck &, array <Set_Card, 15> &, Set_Card &, int, int, CSet_GameDlg *);
-	void GetThreeMore(Set_Deck &, array <Set_Card, 15> &);
+	void GetThreeMore(Set_Deck &, array <Set_Card, 15> &, CSet_GameDlg *);
 
 	CString getName(int);
 	void setName(int, CString);
@@ -29,26 +29,26 @@ public:
 	int getNumberOfPlayers();
 	void setNumberOfPlayers(int);
 	bool getEndGame();
+	bool getThreeMoreFlag();
 	void resetPoints();
 
 private:
+
 	bool *threeontop;
-	bool threemoreflag;
 	int *points;
 	int *result;
-	int lastbutton;
-	int threeforcheck;
 	int *zwischenspeicher;
 	Set_Card *auswahl_check;
 	CString *spieler_name;
 	int *buttons_array;
+
+	bool threemoreflag;
+	bool endgame;
+	int lastbutton;
+	int threeforcheck;
 	int currentplayer;
 	int numberofplayers;
-	bool endgame;
 	int prime;
-	int second;
-	int third;
-	int last;
 };
 
 
