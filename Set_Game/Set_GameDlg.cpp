@@ -240,8 +240,7 @@ void CSet_GameDlg::OnOnspielneuesspiel()
 {
 	Set_GameDlg2 window2(this);
 	window2.DoModal();
-	//SetDlgItemText(IDC_Sp1_Name, L"Desired Text String");
-	SetDlgItemText(IDC_Sp1_Name, (SpielBeginnt->getName(0)));					//Geht jetzt hier weiter machen
+	SetDlgItemText(IDC_Sp1_Name, (SpielBeginnt->getName(0)));	
 	SetDlgItemText(IDC_Sp2_Name, (SpielBeginnt->getName(1)));
 	SetDlgItemText(IDC_Sp3_Name, (SpielBeginnt->getName(2)));
 	SetDlgItemText(IDC_Sp4_Name, (SpielBeginnt->getName(3)));
@@ -259,8 +258,6 @@ void CSet_GameDlg::OnOnspielneuesspiel()
 	}
 	this->GetDlgItem(IDC_ThreeCards)->EnableWindow(true);
 	SpielBeginnt->displayPoints(this);
-	/*CButton* pButton = (CButton*)CSet_GameDlg->GetDlgItem();
-	pButton->EnableWindow(false);*/
 	UpdateWindow();
 }
 
@@ -295,7 +292,7 @@ void CSet_GameDlg::OnBnClickedKarte0()
 	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(0), (SpielBeginnt->getCurrentPlayer()), 0, this);
 	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	
 }
 void CSet_GameDlg::OnBnClickedKarte1()
 {
@@ -307,7 +304,7 @@ void CSet_GameDlg::OnBnClickedKarte1()
 	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(1), SpielBeginnt->getCurrentPlayer(), 1, this);
 	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+
 }
 void CSet_GameDlg::OnBnClickedKarte2()
 {

@@ -1,3 +1,8 @@
+/*****************************************
+** Benjamin Kastl
+** Matrikelnummer 367882
+**
+*****************************************/
 #pragma once
 #include <stdio.h>
 #include <cstdlib>

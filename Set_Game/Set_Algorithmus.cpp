@@ -1,5 +1,10 @@
-#include "stdafx.h"
+/*****************************************
+** Benjamin Kastl	
+** Matrikelnummer 367882
+**
+*****************************************/
 
+#include "stdafx.h"
 #include "Set_Algorithmus.h"
 #include "Set_Repository.h"
 #include "Set_GameDlg.h"
@@ -12,6 +17,7 @@
 
 using namespace std;
 
+//Constructor from class Set_Algorithmus
 Set_Algorithmus::Set_Algorithmus() 
 {
 	buttons_array = new int[15]{ IDC_Karte0, IDC_Karte1, IDC_Karte2, IDC_Karte3, IDC_Karte4, IDC_Karte5, IDC_Karte6, IDC_Karte7, IDC_Karte8,
@@ -36,6 +42,7 @@ Set_Algorithmus::~Set_Algorithmus()
 	
 }
 
+//Function to check the attributes from three Cards an a Set, if there is no Set return false else return true
 bool Set_Algorithmus::CheckForSet(Set_Card a, Set_Card b, Set_Card c)
 {
 	if (((a.getCardAnzahl() == b.getCardAnzahl()) || (a.getCardAnzahl() == c.getCardAnzahl()) || (b.getCardAnzahl() == c.getCardAnzahl())) &&
@@ -60,7 +67,7 @@ bool Set_Algorithmus::CheckForSet(Set_Card a, Set_Card b, Set_Card c)
 	}
 	return true;
 }
-
+//Function to check twelve Cards on a Set with the Function CheckForSet if there is minimum one Set return true else return false
 bool Set_Algorithmus::CheckBuildUp(array <Set_Card, 15> CardsUp)
 {
 	for (int i = 0; i < 12; i++)
@@ -78,65 +85,33 @@ bool Set_Algorithmus::CheckBuildUp(array <Set_Card, 15> CardsUp)
 	}
 	return false;
 }
-
+//Function to place the twelve Bitmaps onto the twelve Buttons on the pitch and activate them
 void Set_Algorithmus::BuildtheDeck(array<Set_Card, 15> CardsUp, CSet_GameDlg *Dlg)
 {
 	for (int i = 0; i <= 11; i++)
 	{
-		if (CardsUp[i].getCardId() == 99)
-		{
-			CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[i]);
-			pButton->ModifyStyle(0, BS_BITMAP);
-			pButton->SetBitmap(false);
-			pButton->EnableWindow(false);
-		}
-		else
-		{
 			CBitmap bmp;
 			bmp.LoadBitmap((CardsUp[i].getCardId()));
 			CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[i]);
 			pButton->ModifyStyle(0, BS_BITMAP);
 			pButton->SetBitmap(bmp);
 			pButton->EnableWindow(true);
-		}
 	}
-
-	/*for (int k = 0; k <= 11; k++)
-	{
-		CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[k]);
-		pButton->EnableWindow(true);
-	}*/
 }
-
+//Function to place the 15 Bitmaps onto the 15 Buttons on the pitch and activate them
 void Set_Algorithmus::BuildtheDeckThreeMore(array <Set_Card, 15> CardsUp, CSet_GameDlg *Dlg)
 {
 	for (int i = 0; i <= 14; i++)
 	{
-		if (CardsUp[i].getCardId() == 99)
-		{
-			CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[i]);
-			pButton->ModifyStyle(0, BS_BITMAP);
-			pButton->SetBitmap(false);
-			pButton->EnableWindow(false);
-		}
-		else
-		{
 			CBitmap bmp;
 			bmp.LoadBitmap(CardsUp[i].getCardId());
 			CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[i]);
 			pButton->ModifyStyle(0, BS_BITMAP);
 			pButton->SetBitmap(bmp);
 			pButton->EnableWindow(true);
-		}
 	}
-
-	/*for (int k = 0; k <= 14; k++)
-	{
-		CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[k]);
-		pButton->EnableWindow(true);
-	}*/
 }
-
+//Function to catch three Buttons to check them on a Set and genarate three new Cards or switch the 13-15 Card with the empty place
 void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &CardsUp, Set_Card &checkCard, int player, int buttonnumber, CSet_GameDlg *Dlg)
 {
 	if (endgame == false)
@@ -266,7 +241,7 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 		Dlg->MessageBox((winnerpoints), (winnername), MB_OK);
 	}
 }
-
+//Function to generate three new Cards on the pitch
 void Set_Algorithmus::GetThreeMore(Set_Deck &deck, array <Set_Card, 15> &CardsUp, CSet_GameDlg *Dlg)
 {
 	threemoreflag = true;
@@ -282,7 +257,7 @@ void Set_Algorithmus::GetThreeMore(Set_Deck &deck, array <Set_Card, 15> &CardsUp
 		threeontop[i] = true;
 	}
 }
-
+//Functions to set and get the Points from the Player
 int Set_Algorithmus::getPoints(int player)
 {
 	return points[player];
@@ -291,6 +266,7 @@ void Set_Algorithmus::setPoints(int player, int point)
 {
 	points[player] += point;
 }
+//Function to reset the Points after a Game
 void Set_Algorithmus::resetPoints()
 {
 	for (int i = 0; i < 4; i++)
@@ -298,6 +274,7 @@ void Set_Algorithmus::resetPoints()
 		points[i] = 0;
 	}
 }
+//Function to dispay the Points from all Players on the pitch
 void Set_Algorithmus::displayPoints(CSet_GameDlg *Dlg)
 {
 	CString point_s = L"";
@@ -310,7 +287,7 @@ void Set_Algorithmus::displayPoints(CSet_GameDlg *Dlg)
 	point_s.Format(_T("%d"), (getPoints(3)));
 	Dlg->GetDlgItem(IDC_Sp4_Punkte)->SetWindowTextW(point_s);
 }
-
+//Functions to set and get the Name from each Player
 CString Set_Algorithmus::getName(int player)
 {
 	return spieler_name[player];
@@ -319,9 +296,7 @@ void Set_Algorithmus::setName(int i, CString name)
 {
 	spieler_name[i] = name;
 }
-
-
-
+//Functions to set and get the current Player
 void Set_Algorithmus::setCurrentPlayer(int who)
 {
 	currentplayer = who;
@@ -330,7 +305,7 @@ int Set_Algorithmus::getCurrentPlayer()
 {
 	return currentplayer;
 }
-
+//Functions to set and get the number of the players
 int Set_Algorithmus::getNumberOfPlayers()
 {
 	return numberofplayers;
@@ -339,10 +314,12 @@ void Set_Algorithmus::setNumberOfPlayers(int number)
 {
 	numberofplayers = number;
 }
+// Function to get an End of a Game
 bool Set_Algorithmus::getEndGame()
 {
 	return endgame;
 }
+//Function to get the Flag that three more Cards are on the pitch
 bool Set_Algorithmus::getThreeMoreFlag()
 {
 	return threemoreflag;
