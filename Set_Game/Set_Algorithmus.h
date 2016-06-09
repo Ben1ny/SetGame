@@ -18,8 +18,8 @@ public:
 	~Set_Algorithmus();
 	//Methodes to handle the Game
 	bool CheckBuildUp(array <Set_Card, 15>);
-	void BuildtheDeck(array <Set_Card, 15>, CSet_GameDlg *);
-	void BuildtheDeckThreeMore(array <Set_Card, 15>, CSet_GameDlg *);
+	void BuildtheDeck(array <Set_Card, 15>, CSet_GameDlg *, int);
+	//void BuildtheDeckThreeMore(array <Set_Card, 15>, CSet_GameDlg *);
 	bool CheckForSet(Set_Card, Set_Card, Set_Card);
 	void ThreeButtonsSet(Set_Deck &, array <Set_Card, 15> &, Set_Card &, int, int, CSet_GameDlg *);
 	void GetThreeMore(Set_Deck &, array <Set_Card, 15> &, CSet_GameDlg *);
@@ -36,6 +36,7 @@ public:
 	bool getEndGame();
 	bool getThreeMoreFlag();
 	void resetPoints();
+	void setThreeButtonFlag(bool);
 
 private:
 	//Arrays for the game
@@ -54,6 +55,7 @@ private:
 	int currentplayer;
 	int numberofplayers;
 	int prime;
+	bool threecardbuttonflag;
 };
 
 

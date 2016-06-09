@@ -109,6 +109,8 @@ BEGIN_MESSAGE_MAP(CSet_GameDlg, CDialogEx)
 	ON_COMMAND(ID_SPIELER_SPIELER2, &CSet_GameDlg::OnSpielerSpieler2)
 	ON_COMMAND(ID_SPIELER_SPIELER3, &CSet_GameDlg::OnSpielerSpieler3)
 	ON_COMMAND(ID_SPIELER_SPIELER4, &CSet_GameDlg::OnSpielerSpieler4)
+	ON_COMMAND(ID_NEUEKARTEN_IMMER, &CSet_GameDlg::OnNeuekartenImmer)
+	ON_COMMAND(ID_NEUEKARTENANFORDERN_AB12KARTEN, &CSet_GameDlg::OnNeuekartenanfordernAb12karten)
 END_MESSAGE_MAP()
 
 
@@ -249,12 +251,12 @@ void CSet_GameDlg::OnOnspielneuesspiel()
 	CardStack = new Set_Deck();
 	if (SpielBeginnt->CheckBuildUp(CardStack->Set_GetStartUpTheTwelve()) == true)
 	{
-		SpielBeginnt->BuildtheDeck(CardStack->Set_GetTheTwelve(), this);
+		SpielBeginnt->BuildtheDeck(CardStack->Set_GetTheTwelve(), this, 11);
 	}
 	else
 	{
 		SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve(), this);
-		SpielBeginnt->BuildtheDeckThreeMore(CardStack->Set_GetTheTwelve(), this);
+		SpielBeginnt->BuildtheDeck(CardStack->Set_GetTheTwelve(), this, 14);
 	}
 	this->GetDlgItem(IDC_ThreeCards)->EnableWindow(true);
 	SpielBeginnt->displayPoints(this);
@@ -460,7 +462,6 @@ void CSet_GameDlg::OnBnClickedKarte14()
 	SpielBeginnt->ThreeButtonsSet(*CardStack, CardStack->Set_GetTheTwelve(), CardStack->Set_GetCardFromTwelve(14), SpielBeginnt->getCurrentPlayer(), 14, this);
 	SpielBeginnt->displayPoints(this);
 	UpdateWindow();
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
 
 void CSet_GameDlg::OnBnClickedButtonThreeNewCards()						//Button für 3 weitere Karten
@@ -468,39 +469,38 @@ void CSet_GameDlg::OnBnClickedButtonThreeNewCards()						//Button für 3 weitere 
 	if (CardStack->Set_getDeckRemainingCards() >= 3)
 	{
 		SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve(), this);
-		SpielBeginnt->BuildtheDeckThreeMore(CardStack->Set_GetTheTwelve(), this);
+		SpielBeginnt->BuildtheDeck(CardStack->Set_GetTheTwelve(), this, 14);
 	}
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
 }
-
+//Prototype
 void CSet_GameDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	int a = 0;
-	//TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
-	/*MessageBox(_T("a"), _T("Information"),
-		MB_ICONINFORMATION | MB_OK | MB_ABORTRETRYIGNORE);*/
 	CSet_GameDlg::OnKeyDown(nChar, nRepCnt, nFlags);
-	//CDialogEx::OnKeyDown(nChar, nRepCnt, nFlags);
-	MessageBox(_T("a"), _T("Information"),
+	MessageBox(_T(""), _T("Information"),
 		MB_ICONINFORMATION | MB_OK | MB_ABORTRETRYIGNORE);
 }
-
+//Prototype
 void CSet_GameDlg::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
-	
 	CDialogEx::OnKeyUp(nChar, nRepCnt, nFlags);
 	int a = 0;
 }
-
-
+//Prototype
 void CSet_GameDlg::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 {
 	CDialogEx::OnActivate(nState, pWndOther, bMinimized);
 	int a = 0;
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein.
 }
 
+void CSet_GameDlg::OnNeuekartenImmer()
+{
+	SpielBeginnt->setThreeButtonFlag(true);
+	CButton* pButton1 = (CButton*)this->GetDlgItem(IDC_ThreeCards);
+	pButton1->EnableWindow(true);
+}
 
-
-
+void CSet_GameDlg::OnNeuekartenanfordernAb12karten()
+{
+	SpielBeginnt->setThreeButtonFlag(false);
+}

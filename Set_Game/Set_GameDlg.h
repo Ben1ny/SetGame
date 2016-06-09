@@ -71,4 +71,6 @@ public:
 	afx_msg void OnSpielerSpieler2();
 	afx_msg void OnSpielerSpieler3();
 	afx_msg void OnSpielerSpieler4();
+	afx_msg void OnNeuekartenImmer();
+	afx_msg void OnNeuekartenanfordernAb12karten();
 };

@@ -35,6 +35,7 @@ Set_Algorithmus::Set_Algorithmus()
 	//Flaggs
 	threemoreflag = false;
 	endgame = false;
+	threecardbuttonflag = true;
 }
 
 Set_Algorithmus::~Set_Algorithmus()
@@ -85,10 +86,10 @@ bool Set_Algorithmus::CheckBuildUp(array <Set_Card, 15> CardsUp)
 	}
 	return false;
 }
-//Function to place the twelve Bitmaps onto the twelve Buttons on the pitch and activate them
-void Set_Algorithmus::BuildtheDeck(array<Set_Card, 15> CardsUp, CSet_GameDlg *Dlg)
+//Function to place the twelve Bitmaps onto the 12 or 15 Buttons on the pitch and activate them
+void Set_Algorithmus::BuildtheDeck(array<Set_Card, 15> CardsUp, CSet_GameDlg *Dlg, int anzahl)
 {
-	for (int i = 0; i <= 11; i++)
+	for (int i = 0; i <= anzahl; i++)
 	{
 			CBitmap bmp;
 			bmp.LoadBitmap((CardsUp[i].getCardId()));
@@ -97,9 +98,19 @@ void Set_Algorithmus::BuildtheDeck(array<Set_Card, 15> CardsUp, CSet_GameDlg *Dl
 			pButton->SetBitmap(bmp);
 			pButton->EnableWindow(true);
 	}
+	if (anzahl == 11)
+	{
+		for (int j = 12; j <= 14; j++)
+		{
+			CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[j]);
+			pButton->ModifyStyle(0, BS_BITMAP);
+			pButton->SetBitmap(false);
+			pButton->EnableWindow(false);
+		}
+	}
 }
 //Function to place the 15 Bitmaps onto the 15 Buttons on the pitch and activate them
-void Set_Algorithmus::BuildtheDeckThreeMore(array <Set_Card, 15> CardsUp, CSet_GameDlg *Dlg)
+/*void Set_Algorithmus::BuildtheDeckThreeMore(array <Set_Card, 15> CardsUp, CSet_GameDlg *Dlg)
 {
 	for (int i = 0; i <= 14; i++)
 	{
@@ -110,13 +121,13 @@ void Set_Algorithmus::BuildtheDeckThreeMore(array <Set_Card, 15> CardsUp, CSet_G
 			pButton->SetBitmap(bmp);
 			pButton->EnableWindow(true);
 	}
-}
+}*/
 //Function to catch three Buttons to check them on a Set and genarate three new Cards or switch the 13-15 Card with the empty place
 void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &CardsUp, Set_Card &checkCard, int player, int buttonnumber, CSet_GameDlg *Dlg)
 {
 	if (endgame == false)
 	{
-		if (threeforcheck <= 2 && lastbutton != buttonnumber)
+		if (threeforcheck <= 2 && lastbutton != buttonnumber)		//Check that the last pressed Button isnt the current pressed Button
 		{
 			lastbutton = buttonnumber;
 			auswahl_check[threeforcheck] = checkCard;
@@ -125,19 +136,19 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 			CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[buttonnumber]);
 			pButton->EnableWindow(false);
 		}
-		if (threeforcheck == 3)
+		if (threeforcheck == 3)										//activate if the player taken three cards
 		{
 			currentplayer = 4;			// wird auf 4 gesetzt damit neue Auswahl nötig ist bei Kartenwahl
 			lastbutton = 15;			// wird auf 15 gesetzt damit kein Konflikt mit den anderen Buttons am anfang besteht.
-			threeforcheck = 0;
-			if (Set_Algorithmus::CheckForSet(auswahl_check[0], auswahl_check[1], auswahl_check[2]) == true)
+			threeforcheck = 0;			// reset the variable for a new player input
+			if (Set_Algorithmus::CheckForSet(auswahl_check[0], auswahl_check[1], auswahl_check[2]) == true)		// check the input for a set
 			{
 				Set_Algorithmus::setPoints(player, 1);
 				for (int i = 0; i <= 2; i++)
 				{
-					if (zwischenspeicher[i] < 12)
+					if (zwischenspeicher[i] < 12)			// check if the Buttonnumber are in the range of the normal 12 buttons
 					{
-						if (threemoreflag == true)
+						if (threemoreflag == true)			// if there are more then 12 cards on top swap the choosen cards with the cards from the buttons 13-15
 						{
 							for (int j = 0; j <= 2; j++)
 							{
@@ -187,7 +198,7 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 				}
 				if(endgame == false)
 				{
-					Set_Algorithmus::BuildtheDeck(deck.Set_GetTheTwelve(), Dlg); 
+					Set_Algorithmus::BuildtheDeck(deck.Set_GetTheTwelve(), Dlg, 11); 
 				}
 				
 			}
@@ -245,8 +256,12 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 void Set_Algorithmus::GetThreeMore(Set_Deck &deck, array <Set_Card, 15> &CardsUp, CSet_GameDlg *Dlg)
 {
 	threemoreflag = true;
-	CButton* pButton1 = (CButton*)Dlg->GetDlgItem(IDC_ThreeCards);
-	pButton1->EnableWindow(false);
+	if (threecardbuttonflag == false)
+	{
+		CButton* pButton1 = (CButton*)Dlg->GetDlgItem(IDC_ThreeCards);
+		pButton1->EnableWindow(false);
+	}
+	
 
 	for (int i = 12; i <= 14; i++)
 	{
@@ -323,4 +338,9 @@ bool Set_Algorithmus::getEndGame()
 bool Set_Algorithmus::getThreeMoreFlag()
 {
 	return threemoreflag;
+}
+
+void Set_Algorithmus::setThreeButtonFlag(bool help)
+{
+	threecardbuttonflag = help;
 }
