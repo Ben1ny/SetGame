@@ -1,3 +1,9 @@
+/*****************************************
+** Thomas Tost
+** Matrikelnummer 370190
+**
+*****************************************/
+
 #include "stdafx.h"
 #include "Set_Repository.h"
 #include <string>
@@ -44,7 +50,7 @@ void Set_Card::printCard() // this function was only needed for debugging in the
 	cout << "Kartennr.: " << CardId << "\t" << " Form: " << form << "\t" << " Farbe: " << farbe << "\t" << " Fuellung: " << fuellung << "\t" << "Anzahl: " << anzahl << endl;
 }
 
-Set_Deck::Set_Deck()
+Set_Deck::Set_Deck()		// the constructor of Set_Deck is an integral part of the repository, here the deck gets created and mixed
 {
 	string farbe, form, fuellung;
 	int counter = 0;
@@ -105,12 +111,12 @@ Set_Deck::Set_Deck()
 	shuffle(Deck.begin(), Deck.end(), std::default_random_engine(seed));		// mix the Deck a 3rd time
 }
 
-Set_Deck::~Set_Deck()
+Set_Deck::~Set_Deck()				// destructor also only defined for completeness
 {
 
 }
 
-Set_Card Set_Deck::getCardFromDeck()
+Set_Card Set_Deck::getCardFromDeck()		// provides the first card from the deck which doesn't have a negative CardId
 {
 
 	for (int i = 0; i < 81; i++)
@@ -121,14 +127,12 @@ Set_Card Set_Deck::getCardFromDeck()
 			Deck[i].delCard();
 			// cout << "getCardFromDeck CardId:" << Deck[i].getCardId() << endl; // debug-code
 			return temp;
-
-			break;
 		}
 	}
 
 }
 
-int Set_Deck::Set_getDeckRemainingCards()
+int Set_Deck::Set_getDeckRemainingCards()		// provides the number of cards still left on the deck ( cards with positive CardId )
 {
 	int count = 80;
 	for (int i = 0; i < 81; i++)
@@ -144,7 +148,7 @@ int Set_Deck::Set_getDeckRemainingCards()
 	}
 	return count;
 }
-void Set_Deck::Set_PrintDeck()
+void Set_Deck::Set_PrintDeck()			// only a debug function to print a deck on the console
 {
 	cout << "Kartenstapel:" << endl;
 	for (int i = 0; i < 81; i++)
@@ -160,7 +164,7 @@ void Set_Deck::Set_PrintDeck()
 }*/
 
 
-array <Set_Card, 15> Set_Deck::Set_GetStartUpTheTwelve()
+array <Set_Card, 15> Set_Deck::Set_GetStartUpTheTwelve()		// this function draws 12 cards from the deck and returns them as std::array
 {
 	//array <Set_Card, 12> TheTwelve;
 	for (int i = 0; i <= 11; i++)
@@ -170,18 +174,18 @@ array <Set_Card, 15> Set_Deck::Set_GetStartUpTheTwelve()
 	return TheTwelve;
 }
 
-array <Set_Card, 15> Set_Deck::Set_GetTheTwelve()
+array <Set_Card, 15> Set_Deck::Set_GetTheTwelve()				// this function only returns the 12 cards already drawn, TheTwelve is basically the storage for the cards at the table
 {
 	return TheTwelve;
 }
 
-void Set_Deck::Set_SetTheTwelve(Set_Card card, int position)
+void Set_Deck::Set_SetTheTwelve(Set_Card card, int position)	// place a card at a certain position
 {
 	//TheTwelve[position] = getCardFromDeck();
 	TheTwelve[position] = card;
 }
 
-Set_Card Set_Deck::Set_GetCardFromTwelve(int position)
+Set_Card Set_Deck::Set_GetCardFromTwelve(int position)			// get a card from a certain position
 {
 	return (TheTwelve[position]);
 }
