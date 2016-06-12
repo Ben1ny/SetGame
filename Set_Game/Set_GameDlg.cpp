@@ -273,6 +273,7 @@ void CSet_GameDlg::OnHilfeAnleitung()
 
 void CSet_GameDlg::OnHilfeInfo()
 {
+
 	// TODO: Fügen Sie hier Ihren Befehlsbehandlungscode ein.
 }
 
@@ -466,7 +467,7 @@ void CSet_GameDlg::OnBnClickedKarte14()
 
 void CSet_GameDlg::OnBnClickedButtonThreeNewCards()						//Button für 3 weitere Karten
 {
-	if (CardStack->Set_getDeckRemainingCards() >= 3)
+	if (CardStack->Set_getDeckRemainingCards() >= 2)
 	{
 		SpielBeginnt->GetThreeMore(*CardStack, CardStack->Set_GetTheTwelve(), this);
 		SpielBeginnt->BuildtheDeck(CardStack->Set_GetTheTwelve(), this, 14);

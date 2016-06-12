@@ -109,19 +109,7 @@ void Set_Algorithmus::BuildtheDeck(array<Set_Card, 15> CardsUp, CSet_GameDlg *Dl
 		}
 	}
 }
-//Function to place the 15 Bitmaps onto the 15 Buttons on the pitch and activate them
-/*void Set_Algorithmus::BuildtheDeckThreeMore(array <Set_Card, 15> CardsUp, CSet_GameDlg *Dlg)
-{
-	for (int i = 0; i <= 14; i++)
-	{
-			CBitmap bmp;
-			bmp.LoadBitmap(CardsUp[i].getCardId());
-			CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[i]);
-			pButton->ModifyStyle(0, BS_BITMAP);
-			pButton->SetBitmap(bmp);
-			pButton->EnableWindow(true);
-	}
-}*/
+
 //Function to catch three Buttons to check them on a Set and genarate three new Cards or switch the 13-15 Card with the empty place
 void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &CardsUp, Set_Card &checkCard, int player, int buttonnumber, CSet_GameDlg *Dlg)
 {
