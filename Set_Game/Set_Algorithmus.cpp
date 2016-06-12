@@ -71,7 +71,7 @@ bool Set_Algorithmus::CheckForSet(Set_Card a, Set_Card b, Set_Card c)
 //Function to check twelve Cards on a Set with the Function CheckForSet if there is minimum one Set return true else return false
 bool Set_Algorithmus::CheckBuildUp(array <Set_Card, 15> CardsUp)
 {
-	for (int i = 0; i < 12; i++)
+	for (int i = 0; i < 12; i++)			//three for-loops to check 12 cards for a set 
 	{
 		for (int j = 1; j < 11; j++)
 		{
@@ -79,26 +79,26 @@ bool Set_Algorithmus::CheckBuildUp(array <Set_Card, 15> CardsUp)
 			{
 				if (Set_Algorithmus::CheckForSet(CardsUp[i], CardsUp[j], CardsUp[k]) == true)
 				{
-					return true;
+					return true;				//set
 				}
 			}
 		}
 	}
-	return false;
+	return false;								//no set
 }
 //Function to place the twelve Bitmaps onto the 12 or 15 Buttons on the pitch and activate them
 void Set_Algorithmus::BuildtheDeck(array<Set_Card, 15> CardsUp, CSet_GameDlg *Dlg, int anzahl)
 {
-	for (int i = 0; i <= anzahl; i++)
+	for (int i = 0; i <= anzahl; i++)				// for-loop to place the bitmaps on the buttons
 	{
 			CBitmap bmp;
-			bmp.LoadBitmap((CardsUp[i].getCardId()));
-			CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[i]);
+			bmp.LoadBitmap((CardsUp[i].getCardId()));						
+			CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[i]);		//create a pointer from type CButton to reference on a Dialog item id
 			pButton->ModifyStyle(0, BS_BITMAP);
 			pButton->SetBitmap(bmp);
 			pButton->EnableWindow(true);
 	}
-	if (anzahl == 11)
+	if (anzahl == 11)				//if 12 cards disable the buttons 12-14
 	{
 		for (int j = 12; j <= 14; j++)
 		{
@@ -153,29 +153,29 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 							}
 
 						}
-						else
+						else//if there are only 12 cards
 						{
-							if (deck.Set_getDeckRemainingCards() > 0)
+							if (deck.Set_getDeckRemainingCards() > 0)		// if more then one card in the cardstack
 							{
-								deck.Set_SetTheTwelve(deck.getCardFromDeck(), zwischenspeicher[i]);
+								deck.Set_SetTheTwelve(deck.getCardFromDeck(), zwischenspeicher[i]);//take one card from the stack and check if it was the last
 								if (deck.Set_getDeckRemainingCards() == 0)
 								{
 									endgame = true;
 								}
 							}
-							else
+							else//if there is no card in the cardstack set the endgameflag
 							{
 								endgame = true;
 							}
 
 						}
-						if ((threeontop[0] == false) && (threeontop[1] == false) && (threeontop[2] == false))
+						if ((threeontop[0] == false) && (threeontop[1] == false) && (threeontop[2] == false))		//check if only 12 cards on table and clear the threemoreflag
 						{
 
 							threemoreflag = false;
 						}
 					}
-					else if (zwischenspeicher[i] >= 12)
+					else if (zwischenspeicher[i] >= 12)				// if the button id is higher then 11 disable this button
 					{
 						CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[zwischenspeicher[i]]);
 						pButton->ModifyStyle(0, BS_BITMAP);
@@ -184,21 +184,21 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 						threeontop[(zwischenspeicher[i] - 12)] = false;
 					}
 				}
-				if(endgame == false)
+				if(endgame == false)		//if more then 0 cards in the stack build the deck 
 				{
 					Set_Algorithmus::BuildtheDeck(deck.Set_GetTheTwelve(), Dlg, 11); 
 				}
 				
 			}
-			else
+			else					//else case if there is no set and rea
 			{
-				for (int k = 0; k <= 2; k++)
+				for (int k = 0; k <= 2; k++)		//reactivate the three buttons 
 				{
 					CButton* pButton = (CButton*)Dlg->GetDlgItem(buttons_array[zwischenspeicher[k]]);
 					pButton->EnableWindow(true);
 				}
 			}
-			for (int k = 0; k <= 2; k++)
+			for (int k = 0; k <= 2; k++)			//reactivate the Buttons to play the next round
 			{
 				if (zwischenspeicher[k] <= 11)
 				{
@@ -207,22 +207,22 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 				}
 			}
 		}
-		if ((threeontop[0] == false) && (threeontop[1] == false) && (threeontop[2] == false))
+		if ((threeontop[0] == false) && (threeontop[1] == false) && (threeontop[2] == false))			//if only 12 cards on the table activate the button three more cards
 		{
 			threemoreflag = false;
 			CButton* pButton1 = (CButton*)Dlg->GetDlgItem(IDC_ThreeCards);
 			pButton1->EnableWindow(true);
 		}
 	}
-	if(endgame == true)
+	if(endgame == true)								//if case to check if its the end of the game
 	{
-		for(int l = 0; l <= 14; l++)
+		for(int l = 0; l <= 14; l++)				//for-loop to deactivate all of the buttons
 		{
 			CButton* pButton2 = (CButton*)Dlg->GetDlgItem(buttons_array[l]);
 			pButton2->EnableWindow(false);
 		}
 		prime = 0;
-		for (int m = 0; m <= 3; m++)
+		for (int m = 0; m <= 3; m++)				//loop to check who got the most points
 		{
 			for (int n = (m+1); n <= 3; n++)
 			{
@@ -233,7 +233,7 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 			}
 
 		}
-		CString winnerpoints;
+		CString winnerpoints;						// Display the messagebox with the winner
 		CString winnername = L"Gewonnen hat: ";
 		winnerpoints.Format(_T("Punkte: %d"), (points[prime]));
 		winnername = winnername + spieler_name[prime];
@@ -243,22 +243,25 @@ void Set_Algorithmus::ThreeButtonsSet(Set_Deck &deck, array<Set_Card, 15> &Cards
 //Function to generate three new Cards on the pitch
 void Set_Algorithmus::GetThreeMore(Set_Deck &deck, array <Set_Card, 15> &CardsUp, CSet_GameDlg *Dlg)
 {
-	threemoreflag = true;
-	if (threecardbuttonflag == false)
+	int help = 0;								// help variable to seht the threeontop array
+	threemoreflag = true;						//Set the flag to show that there are 15 Cards on the table
+	if (threecardbuttonflag == false)			//Flag to check which Three more Cards mode is activated
 	{
-		CButton* pButton1 = (CButton*)Dlg->GetDlgItem(IDC_ThreeCards);
+		CButton* pButton1 = (CButton*)Dlg->GetDlgItem(IDC_ThreeCards);				//deactivate the Button ThreeMoreCards
 		pButton1->EnableWindow(false);
 	}
 	
 
-	for (int i = 12; i <= 14; i++)
+	for (int i = 12; i <= 14; i++)								// for-loop to generate three new Cards and 
 	{
 		deck.Set_SetTheTwelve(deck.getCardFromDeck(), i);
+		threeontop[help] = true;
+		help++;
 	}
-	for (int i = 0; i <= 2; i++)
+	/*for (int i = 0; i <= 2; i++)
 	{
 		threeontop[i] = true;
-	}
+	}*/
 }
 //Functions to set and get the Points from the Player
 int Set_Algorithmus::getPoints(int player)
