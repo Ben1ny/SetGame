@@ -46,9 +46,9 @@ public:
 	//void Set_SetTheTwelve(int);
 	
 protected:
-	array <Set_Card, 81> Deck;
-private:
-	array <Set_Card, 15> TheTwelve;
+	array <Set_Card, 81> Deck;			// Deck gets stored as std::array
+private:								
+	array <Set_Card, 15> TheTwelve;		// TheTwelve gets stored as std::array
 
 };
 
